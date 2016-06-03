@@ -2,7 +2,7 @@ var gulp = require("gulp");
 
 var browserSync = require("browser-sync");
 
-gulp.task("default", ['debug']);
+gulp.task("default", ["debug"]);
 
 gulp.task("debug", () => {
     browserSync({
@@ -12,3 +12,5 @@ gulp.task("debug", () => {
         }
     });
 });
+
+
