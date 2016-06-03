@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/yuyaotsuka/stickboxing#readme",
   "devDependencies": {
+    "browser-sync": "^2.12.10",
     "gulp": "^3.9.1",
     "webpack": "^1.13.1"
   }
