@@ -1,5 +1,7 @@
 # Created by https://www.gitignore.io/api/node,librarian-chef
 
+build
+
 ### Node ###
 # Logs
 logs
