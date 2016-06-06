@@ -1,26 +1,31 @@
-var gulp = require("gulp")
 var browserSync = require("browser-sync")
+var gulp = require("gulp")
+var gulpWebpack = require("gulp-webpack")
 
 gulp.task("default", ["build"], () => {
 })
 
 gulp.task("build", () => {
+    gulp.src(["src/stickboxing/main.js"])
+        .pipe(gulpWebpack({
+            output: {
+                filename: "main.js"
+            }
+        }))
+        .pipe(gulp.dest("build/js"))
+    
+    gulp.src(["lib/enchant.js"])
+        .pipe(gulp.dest("build/js"))
+    
+    gulp.src(["res/html/index.html"])
+        .pipe(gulp.dest("build"))
 })
 
-gulp.task("test", ["browser-sync"], () => {
-    gulp.watch("build/*.htm", ["browser-sync-reload"])
-    gulp.watch("build/*.css", ["browser-sync-reload"])
-})
-
-gulp.task("browser-sync", () => {
+gulp.task("test", () => {
     browserSync({
         server: {
             baseDir: "build/",
-            index  : "index.htm"
+            index: "index.html"
         }
     })
-})
-
-gulp.task("browser-sync-reload", () => {
-    browserSync.reload()
 })
