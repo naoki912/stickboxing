@@ -21,7 +21,7 @@ gulp.task("build", () => {
         .pipe(gulp.dest("build"))
 })
 
-gulp.task("test", () => {
+gulp.task("test", ["build"], () => {
     browserSync({
         server: {
             baseDir: "build/",
