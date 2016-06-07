@@ -1,31 +1,12 @@
-var browserSync = require("browser-sync")
+var child_process = require("child_process")
 var gulp = require("gulp")
-var gulpWebpack = require("gulp-webpack")
 
-gulp.task("default", ["build"], () => {
-})
+gulp.task("default", ["build"])
 
-gulp.task("build", () => {
-    gulp.src(["src/stickboxing/main.js"])
-        .pipe(gulpWebpack({
-            output: {
-                filename: "main.js"
-            }
-        }))
-        .pipe(gulp.dest("build/js"))
-    
-    gulp.src(["lib/enchant.js"])
-        .pipe(gulp.dest("build/js"))
-    
-    gulp.src(["res/html/index.html"])
-        .pipe(gulp.dest("build"))
-})
+gulp.task("build", () =>
+    child_process.spawn("npm", ["run", "build"])
+)
 
-gulp.task("test", ["build"], () => {
-    browserSync({
-        server: {
-            baseDir: "build/",
-            index: "index.html"
-        }
-    })
-})
+gulp.task("test", ["build"], () =>
+    child_process.spawn("npm", ["run", "test"], { detached: true, stdio: "ignore" }).unref()
+)

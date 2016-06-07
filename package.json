@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "gulp build",
-    "test": "gulp test"
+    "build": "webpack",
+    "test": "browser-sync start --server build --index index.html"
   },
   "repository": {
     "type": "git",
@@ -19,8 +19,6 @@
   "homepage": "https://github.com/yuyaotsuka/stickboxing#readme",
   "devDependencies": {
     "browser-sync": "^2.12.10",
-    "gulp": "^3.9.1",
-    "gulp-webpack": "^1.5.0",
     "webpack": "^1.13.1"
   }
 }
