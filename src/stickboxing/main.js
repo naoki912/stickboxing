@@ -3,8 +3,9 @@ var _ = require("enchant")
 enchant()
 
 window.onload = function () {
-    var game = new Game(320, 320)
+    var game = new Game(400, 300)
     game.onload = function () {
+<<<<<<< HEAD
         var label1 = new Label("Stick Boxing")
         var label2 = new Label("試合")
         var label3 = new Label("装備変更")
@@ -54,6 +55,16 @@ window.onload = function () {
             if (game.input.down) this.x += 5;
         });
         
+=======
+        game.preload('chara0.gif')
+        var label = new Label("Stick Bogggggggggggggxing")
+        var sprite = new Sprite(32, 32)
+        sprite.image = game.assets['chara0.gif']
+        var scene = new Scene()
+        scene.addChild(label)
+
+        game.pushScene(scene)
+>>>>>>> 10a3dd0d27ef055150628e81de3dc15a906ecb1d
     }
     game.start()
 }
