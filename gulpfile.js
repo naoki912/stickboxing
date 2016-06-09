@@ -4,7 +4,7 @@ var gulp = require("gulp")
 gulp.task("default", ["build"])
 
 gulp.task("build", () =>
-    child_process.spawn("npm run build", { shell: true })
+    child_process.execSync("npm run build", { shell: true, stdio: "inherit" })
 )
 
 gulp.task("test", ["build"], () =>
