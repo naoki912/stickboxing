@@ -2,14 +2,14 @@ var _ = require("enchant")
 
 enchant()
 
-window.onload = function () {
+window.onload = () => {
     var game = new Game(400, 300)
-    game.onload = function () {
+    game.onload = () => {
         var scene = new Scene()
 
-        var label1 = new Label("Stick Boxing")
+        var titleLabel = new Label("Stick Boxing")
 
-        scene.addChild(label1)
+        scene.addChild(titleLabel)
 
         game.pushScene(scene)
     }
