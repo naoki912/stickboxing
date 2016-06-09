@@ -3,8 +3,7 @@ var htmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        "js/main.js": "./src/stickboxing/main.js",
-        "index.htm": "./res/html/index.htm"
+        "js/main.js": "./src/stickboxing/main.js"
     },
     output: {
         filename: "[name]",
@@ -12,7 +11,7 @@ module.exports = {
     },
     plugins: [
         new webpack.optimize.UglifyJsPlugin({
-            minimize: true
+            compress: { warnings: false }
         }),
         new htmlWebpackPlugin({
             title: "Stick Boxing"
