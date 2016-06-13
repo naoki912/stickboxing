@@ -14,7 +14,7 @@ export var StagesView = (props) =>
       <div className={styles.title}>
         STAGE SELECT
       </div>
-      <ul>
+      <ul> 
       {test_data.map(
           (stage) =>
               <li key={stage.id}>
