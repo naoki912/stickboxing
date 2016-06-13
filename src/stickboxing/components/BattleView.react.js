@@ -5,14 +5,13 @@ var testData = [
 
 ]
 
-var HPBarStyle = (props) => ({
+var HPBarStylePlayer1 = (props) => ({
     width: props.player1.hitPoint / props.player1.maxHitPoint + "px",
-    height: "20px"
 })
 
 export var BattleView = (props) =>
     <div className={styles.Battle}>
-        <div className={HPbar} style={HPBarStyle(props)}>
+        <div className={HPbar} style={HPBarStylePlayer1(props)}>
             
         </div>
     </div>
