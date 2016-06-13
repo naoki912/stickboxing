@@ -1,18 +1,22 @@
-var htmlWebpackPlugin = require("html-webpack-plugin")
+var HtmlWebpackPlugin = require("html-webpack-plugin")
 var webpack = require("webpack")
 
 module.exports = {
-    entry: {
-        "js/main.js": "./src/stickboxing/main.js"
-    },
+    entry: { "js/main.js": "stickboxing/main" },
     module: {
         loaders: [
             {
-                include: /src/,
+                exclude: /node_modules/,
                 loader: "babel",
-                query: { presets: ["es2015"] },
-                test: /\.js$/
-            }
+                query: {
+                    presets: ["es2015", "react"]
+                },
+                test: /(\.react)?\.js$/
+            },
+            {
+                loader: "style!css?modules&importLoaders=1",//!postcss",
+                test: /\.css$/
+            },
         ]
     },
     output: {
@@ -20,14 +24,11 @@ module.exports = {
         path: "build"
     },
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({
-            compress: { warnings: false }
-        }),
-        new htmlWebpackPlugin({
-            title: "Stick Boxing"
-        })
+        new HtmlWebpackPlugin({ title: "Stick Boxing" }),
+        new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) })
     ],
     resolve: {
-        modulesDirectories: ["src", "lib"]
+        extensions: ["", ".css", ".js", ".react.js"],
+        modulesDirectories: ["src", "lib", "node_modules"]
     }
 }
