@@ -8,5 +8,6 @@ export var SettingsView = (props) =>
         SETTINGS
       </div>
       <ul>
+          <button onClick={props.onSubmit()}></button>
       </ul>
     </div>
