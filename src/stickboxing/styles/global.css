@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "Audiowide";
+    src: url(/fonts/Audiowide/Audiowide-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Squada One";
+    src: url(/fonts/Squada_One/SquadaOne-Regular.ttf);
+}
+
+body, h1, h2, h3, h4, h5, h6, ul {
+    margin: 0;
+    padding: 0;
+}
+
+ul {
+    list-style-type: none;
+}
