@@ -1,4 +1,4 @@
-export var Settings = {
+export var settings = {
     buttonLayout: {
         allowButtonPosition: {
             x: 100 ,y: 100
@@ -17,3 +17,5 @@ export var Settings = {
         }
     }
 }
+
+
