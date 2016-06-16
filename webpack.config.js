@@ -24,7 +24,7 @@ module.exports = {
         path: "build"
     },
     plugins: [
-        new HtmlWebpackPlugin({ title: "Stick Boxing" }),
+        new HtmlWebpackPlugin({ template: "src/stickboxing/index.html" }),
         new webpack.DefinePlugin({ "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV) })
     ],
     resolve: {
