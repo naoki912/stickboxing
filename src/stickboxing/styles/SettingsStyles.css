@@ -17,25 +17,13 @@ ul {
     list-style-type: none;
 }
 
-.mainMenu {
+.settings {
     padding: 16px 0px;
     background: black;
     position: relative;
     width: 400px;
 }
 
-.container {
-    position: absolute;
-    top: 30px;
-}
-
-.title {
-    margin-bottom: 64px;
-    padding: 0px 32px;
-    color: white;
-    font-family: "Audiowide";
-    font-size: 32px;
-}
 
 .button {
     display: block;
@@ -49,24 +37,4 @@ ul {
     font-style: italic;
     font-weight: normal;
     text-decoration: none;
-}
-
-.button:hover {
-    background: linear-gradient(
-        rgba(0, 0, 0, 0),
-        rgba(255, 255, 255, 0.05),
-        rgba(255, 255, 255, 0.1),
-        rgba(255, 255, 255, 0.2),
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 0.8),
-        rgba(255, 255, 255, 0.3),
-        rgba(255, 255, 255, 0.2),
-        rgba(255, 255, 255, 0.1),
-        rgba(0, 0, 0, 0)
-    );
-}
-
-.button:hover::before {
-    content: "";
-    margin-right: 16px;
 }
