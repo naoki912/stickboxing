@@ -18,4 +18,16 @@ export var settings = {
     }
 }
 
+export var item1 = {
+  image: "",
+  position: {
+      x: 100, y: 120
+  }
+}
 
+export var item2 = {
+  image: "",
+  position: {
+      x: 100, y: 120
+  }
+}
