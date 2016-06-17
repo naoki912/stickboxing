@@ -21,30 +21,23 @@ ul {
     padding: 16px 0px;
     background: black;
     position: relative;
-    width: 400px;
+    width:600px;
 }
+
+.screen {
+    background: black;
+    position: relative;
+    width:600px;
+}
+
 .container {
     position: absolute;
     top: 30px;
 }
 .title {
-    margin-bottom: 64px;
+    margin-bottom: 40px;
     padding: 0px 32px;
     color: white;
     font-family: "Audiowide";
     font-size: 32px;
-}
-
-.button {
-    display: block;
-    min-width: 350px;
-    margin: 0 0 8px 0;
-    padding: 0 32px;
-    color: white;
-    font-family: "Squada One";
-    font-size: 40px;
-    font-stretch: extra-condensed;
-    font-style: italic;
-    font-weight: normal;
-    text-decoration: none;
 }
