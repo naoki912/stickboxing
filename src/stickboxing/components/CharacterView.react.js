@@ -46,6 +46,9 @@ var testHasGlobeList = [
 
 export var CharacterView = (props) =>
     <div>
+        <div className={styles.title}>
+            Character
+        </div>
         <ul>
             GlobeList
             {globeList.map(
