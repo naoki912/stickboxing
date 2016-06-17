@@ -11,5 +11,8 @@
     font-size: 40px;
 }
 .stageLine{
-    display: inline-block;
+    display: flex;
+    overflow: scroll;
+    margin-left:10px;
+    margin-right:10px;
 }

@@ -10,4 +10,8 @@
 }
 .stage{
         background:#999999;
+        margin-right: 10px;
+}
+.stage:hover{
+        background:#000000;
 }
