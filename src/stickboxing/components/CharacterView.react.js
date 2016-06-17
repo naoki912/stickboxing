@@ -44,7 +44,7 @@ var testHasGlobeList = [
 ]
 
 
-export var CharacterView = () =>
+export var CharacterView = (props) =>
     <div>
         <ul>
             GlobeList
