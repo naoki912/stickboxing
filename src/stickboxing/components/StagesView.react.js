@@ -6,7 +6,8 @@ var test_data = [
   { id: 0, name: "Name1", image: "/images/stage1.jpg" },
   { id: 1, name: "Name2", image: "/images/stage1.jpg" },
   { id: 2, name: "Name3", image: "/images/stage1.jpg" },
-  { id: 3, name: "Name4", image: "/images/stage1.jpg" }
+  { id: 3, name: "Name4", image: "/images/stage1.jpg" },
+  { id: 4, name: "Name5", image: "/images/stage1.jpg" }
 ]
 
 export var StagesView = (props) =>
@@ -14,7 +15,7 @@ export var StagesView = (props) =>
       <div className={styles.title}>
         STAGE SELECT
       </div>
-      <ul className={stageLine}> 
+      <ul className={styles.stageLine}> 
       {test_data.map(
           (stage) =>
               <li key={stage.id}>
