@@ -18,9 +18,11 @@ export var StagesView = (props) =>
       <ul className={styles.stageLine}> 
       {test_data.map(
           (stage) =>
-              <li key={stage.id}>
+              <li key={stage.id}><label><input type="radio" name="stageImage" value={stage.id} className={styles.stageChoice} />
                 <StageView onClick={() => props.onStageSelectListener(stage)} stage={stage} />
+                </label>
               </li>
       )}
       </ul>
+      
     </div>
