@@ -19,13 +19,14 @@ export var SettingsView = (props) =>
                 </img>
                 <div>action
                 <img className="idouimage"src="/images/idou.png"   
-                style = {{left: "settings.buttonLayout.allowButtonPosition.x" ,
-                top: "settings.buttonLayout.allowButtonPosition.y"}}>
-                </img>
-                <img className="1image"src="/images/1btn.png"></img>
-                <img className="2image"src="/images/2btn.png"></img>
-                <img className="3image"src="/images/3btn.png"></img>
-                <div>
+                    style={{
+                        left: settings.buttonLayout.allowButtonPosition.x,
+                        top: settings.buttonLayout.allowButtonPosition.buttonLayout
+                    }}/>
+                <img className="1image"src="/images/1btn.png"/>
+                <img className="2image"src="/images/2btn.png"/>
+                <img className="3image"src="/images/3btn.png"/>
+                </div>
             </div>
         </div>
     </div>
