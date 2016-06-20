@@ -11,8 +11,8 @@ var HPBarStylePlayer1 = (props) => ({
 
 export var BattleView = (props) =>
     <div className={styles.Battle}>
-        <div className={HPbar} style={HPBarStylePlayer1(props)}>
-            
-        </div>
+      <div className={HPbar} style={HPBarStylePlayer1(props)}>
+      
+      </div>
     </div>
 

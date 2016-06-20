@@ -4,9 +4,10 @@ import * as styles from "stickboxing/styles/MainMenuStyles"
 
 export var MainMenuView = () =>
     <div className={styles.mainMenu}>
-      <img className="titleimage"
-         src="/images/stage1.jpg"
-         style={ { width: "400px", height: "300px" } }>
+      <img
+        className="titleimage"
+        src="/images/stage1.jpg"
+        style={ { width: "400px", height: "300px" } }>
       </img>
       <div className={styles.container}>
         <h1 className={styles.title}>
