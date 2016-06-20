@@ -1,0 +1,17 @@
+.HPbar{
+    height:20px;
+    background-color:red;
+}
+
+.battleView {
+    position: relative;
+    width: 640px;
+    height: 480px;
+    background-color: gray;
+}
+
+.button {
+    position: absolute;
+    width: 64px;
+    height: 64px;
+}

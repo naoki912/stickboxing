@@ -1,32 +1,67 @@
 import * as React from "react"
-import * as styles from "stickboxing/styles/SettingsStyles"
+import * as battleViewStyles from "stickboxing/styles/BattleViewStyles"
+import * as styles from "stickboxing/styles/SettingsViewStyles"
 import { settings } from "stickboxing/test/data"
 
-export var SettingsView = (props) =>
+let onButtonPressed = (event) => {
+    let button = event.currentTarget
+    let x = event.clientX
+    let y = event.clientY
+
+    button.onmousemove = (event) => {
+        console.log(event.clientX - x)
+        button.style.left = parseInt(button.style.left) + (event.clientX - x) + "px"
+        button.style.top = parseInt(button.style.top) + (event.clientY - y) + "px"
+    }
+
+    button.onmouseup = (event) => {
+        console.log("test2")
+        button.mousemove = null
+    }
+}
+
+export let SettingsView = (props) =>
     <div className={styles.settings}>
-        <img className="titleimage"
-            src="/images/stage1.jpg"
-            style={ { width: "600px", height: "500px" } }>
-        </img>
-        <div className={styles.container}>
-            <h1 className={styles.title}>
-                Settings
-            </h1>
-            <div className={styles.screen}>
-                <img className="backimage"
-                    src="/images/back.jpg"
-                    style={ { width: "600px", height: "400px" } }>
-                </img>
-                <div>action
-                <img className="idouimage"src="/images/idou.png"   
-                    style={{
-                        left: settings.buttonLayout.allowButtonPosition.x,
-                        top: settings.buttonLayout.allowButtonPosition.buttonLayout
-                    }}/>
-                <img className="1image"src="/images/1btn.png"/>
-                <img className="2image"src="/images/2btn.png"/>
-                <img className="3image"src="/images/3btn.png"/>
-                </div>
-            </div>
+      <img className="titleimage"
+        src="/images/stage1.jpg"
+        style={{ width: "600px", height: "500px" }}>
+      </img>
+      <div className={styles.container}>
+        <h1 className={styles.title}>
+          Settings
+        </h1>
+        <div className={battleViewStyles.battleView}>
+          <div
+            className={battleViewStyles.butoon}
+            style={{
+              left: (settings.buttonLayout.allowButtonPosition.x || 0) + "px",
+              top: (settings.buttonLayout.allowButtonPosition.y || 0) + "px",
+              backgroundImage: "url(/images/allowButton.png)"
+            }}/>
+          <div
+            className={battleViewStyles.butoon}
+            style={{
+              left: (settings.buttonLayout.allowButtonPosition.x || 0) + "px",
+              top: (settings.buttonLayout.allowButtonPosition.y || 0) + "px",
+              backgroundImage: "url(/images/lightPunchButton.png)"
+            }}
+            onMouseDown={onButtonPressed}/>
+          <div
+            className={battleViewStyles.button}
+            style={{
+              left: (settings.buttonLayout.allowButtonPosition.x || 0) + "px",
+              top: (settings.buttonLayout.allowButtonPosition.y || 0) + "px",
+              backgroundImage: "url(/images/heavyPunchButton.png)"
+            }}
+            onMouseDown={onButtonPressed}/>
+          <div
+            className={battleViewStyles.button}
+            style={{
+              left: (settings.buttonLayout.allowButtonPosition.x || 0) + "px",
+              top: (settings.buttonLayout.allowButtonPosition.y || 0) + "px",
+              backgroundImage: "url(/images/guardButton.png)"
+            }}
+            onMouseDown={onButtonPressed}/>
         </div>
+      </div>
     </div>

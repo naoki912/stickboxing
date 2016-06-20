@@ -27,13 +27,15 @@ ul {
 .screen {
     background: black;
     position: relative;
-    width:600px;
+    width: 640px;
+    height: 480px;
 }
 
 .container {
     position: absolute;
     top: 30px;
 }
+
 .title {
     margin-bottom: 40px;
     padding: 0px 32px;
