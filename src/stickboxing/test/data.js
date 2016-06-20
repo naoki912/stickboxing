@@ -6,7 +6,7 @@ export var settings = {
         heavyPunchButtonPosition: {
             x: 120, y: 100
         },
-        guradButtonPosition: {
+        guardButtonPosition: {
             x: 130, y: 100
         },
         lightPunchButtonPosition: {
