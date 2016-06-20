@@ -15,6 +15,7 @@ export var StagesView = (props) =>
       <div className={styles.title}>
         STAGE SELECT
       </div>
+      <form>
       <ul className={styles.stageLine}> 
       {test_data.map(
           (stage) =>
@@ -24,6 +25,8 @@ export var StagesView = (props) =>
               </li>
       )}
       </ul>
+      <input type="submit" value="決定！" onSubmit={() => props.onStageSelected(stage)} />
+      </form>
       
-      <input type="submit" value="決定！" onClick={() => props.onStageSelected(stage)} />
+      
     </div>
