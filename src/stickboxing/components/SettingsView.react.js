@@ -40,9 +40,9 @@ export let SettingsView = (props) =>
         <div
           className={battleViewStyles.button}
           style={{
-            left: (settings.buttonLayout.lightPunchButtonPosition.x || 0) + "px",
-            top: (settings.buttonLayout.lightPunchButtonPosition.y || 0) + "px",
-            backgroundImage: "url(/images/lightPunchButton.png)"
+              left: (settings.buttonLayout.lightPunchButtonPosition.x || 0) + "px",
+              top: (settings.buttonLayout.lightPunchButtonPosition.y || 0) + "px",
+              backgroundImage: "url(/images/lightPunchButton.png)"
           }}
           onMouseDown={onButtonPressed}/>
         <div
@@ -51,15 +51,15 @@ export let SettingsView = (props) =>
               left: (settings.buttonLayout.heavyPunchButtonPosition.x || 0) + "px",
               top: (settings.buttonLayout.heavyPunchButtonPosition.y || 0) + "px",
               backgroundImage: "url(/images/heavyPunchButton.png)"
-            }}
-            onMouseDown={onButtonPressed}/>
-          <div
-            className={battleViewStyles.button}
-            style={{
+          }}
+          onMouseDown={onButtonPressed}/>
+        <div
+          className={battleViewStyles.button}
+          style={{
               left: (settings.buttonLayout.guardButtonPosition.x || 0) + "px",
               top: (settings.buttonLayout.guardButtonPosition.y || 0) + "px",
               backgroundImage: "url(/images/guardButton.png)"
-            }}
-            onMouseDown={onButtonPressed}/>
+          }}
+          onMouseDown={onButtonPressed}/>
       </div>
     </div>
