@@ -3,63 +3,85 @@ import * as battleViewStyles from "stickboxing/styles/BattleViewStyles"
 import * as styles from "stickboxing/styles/SettingsViewStyles"
 import { settings } from "stickboxing/test/data"
 
-let onButtonPressed = (event) => {
+let onButtonMouseDown = (event) => {
     let button = event.currentTarget
     let buttonRect = button.getBoundingClientRect()
-    let battleView = document.querySelector("." + battleViewStyles.battleView)
-    let battleViewRect = battleView.getBoundingClientRect()
-    let maxX = battleViewRect.width - buttonRect.width
-    let maxY = battleViewRect.height - buttonRect.height
+    let parentRect = button.parentElement.getBoundingClientRect()
+    let maxX = parentRect.width - buttonRect.width
+    let maxY = parentRect.height - buttonRect.height
     let x = parseInt(button.style.left) - event.clientX
     let y = parseInt(button.style.top) - event.clientY
 
-    battleView.onmousemove = (event) => {
+    document.body.onmousemove = (event) => {
         button.style.left = Math.min(Math.max(x + event.clientX, 0), maxX) + "px"
         button.style.top = Math.min(Math.max(y + event.clientY, 0), maxY) + "px"
     }
 
-    battleView.onmouseup = (event) => {
-        battleView.onmousemove = null
+    document.body.onmouseup = (event) => {
+        document.body.onmousemove = null
     }
 }
 
+let onButtonTouchStart = (event) => {
+    let button = event.currentTarget
+    let buttonRect = button.getBoundingClientRect()
+    let parentRect = button.parentElement.getBoundingClientRect()
+    let maxX = parentRect.width - buttonRect.width
+    let maxY = parentRect.height - buttonRect.height
+    let touch = event.targetTouches[0]
+    let x = parseInt(button.style.left) - touch.clientX
+    let y = parseInt(button.style.top) - touch.clientY
+
+    document.body.ontouchmove = (event) => {
+        event.preventDefault()
+
+        let touch = event.targetTouches[0]
+
+        button.style.left = Math.min(Math.max(x + touch.clientX, 0), maxX) + "px"
+        button.style.top = Math.min(Math.max(y + touch.clientY, 0), maxY) + "px"
+    }
+
+    document.body.ontouchend = (event) => {
+        document.body.onmousemove = null
+    }
+}
+
+let Button = (props) => 
+    <div
+      {...props}
+      className={battleViewStyles.button}
+      onMouseDown={onButtonMouseDown}
+      onTouchStart={onButtonTouchStart}/>
+
 export let SettingsView = (props) =>
-    <div className={styles.settings}>
+    <div className={styles.settingsView}>
       <h1 className={styles.title}>
         Settings
       </h1>
       <div className={battleViewStyles.battleView}>
-        <div
-          className={battleViewStyles.button}
+        <Button
           style={{
-            left: (settings.buttonLayout.allowButtonPosition.x || 0) + "px",
-            top: (settings.buttonLayout.allowButtonPosition.y || 0) + "px",
+            left: settings.buttonLayout.allowButtonPosition.x + "px",
+            top: settings.buttonLayout.allowButtonPosition.y + "px",
             backgroundImage: "url(/images/allowButton.png)"
-          }}
-          onMouseDown={onButtonPressed}/>
-        <div
-          className={battleViewStyles.button}
+          }}/>
+        <Button
           style={{
-              left: (settings.buttonLayout.lightPunchButtonPosition.x || 0) + "px",
-              top: (settings.buttonLayout.lightPunchButtonPosition.y || 0) + "px",
+              left: settings.buttonLayout.lightPunchButtonPosition.x + "px",
+              top: settings.buttonLayout.lightPunchButtonPosition.y + "px",
               backgroundImage: "url(/images/lightPunchButton.png)"
-          }}
-          onMouseDown={onButtonPressed}/>
-        <div
-          className={battleViewStyles.button}
+          }}/>
+        <Button
           style={{
-              left: (settings.buttonLayout.heavyPunchButtonPosition.x || 0) + "px",
-              top: (settings.buttonLayout.heavyPunchButtonPosition.y || 0) + "px",
+              left: settings.buttonLayout.heavyPunchButtonPosition.x + "px",
+              top: settings.buttonLayout.heavyPunchButtonPosition.y + "px",
               backgroundImage: "url(/images/heavyPunchButton.png)"
-          }}
-          onMouseDown={onButtonPressed}/>
-        <div
-          className={battleViewStyles.button}
+          }}/>
+        <Button
           style={{
-              left: (settings.buttonLayout.guardButtonPosition.x || 0) + "px",
-              top: (settings.buttonLayout.guardButtonPosition.y || 0) + "px",
+              left: settings.buttonLayout.guardButtonPosition.x + "px",
+              top: settings.buttonLayout.guardButtonPosition.y + "px",
               backgroundImage: "url(/images/guardButton.png)"
-          }}
-          onMouseDown={onButtonPressed}/>
+          }}/>
       </div>
     </div>

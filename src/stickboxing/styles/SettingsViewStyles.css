@@ -17,7 +17,7 @@ ul {
     list-style-type: none;
 }
 
-.settings {
+.settingsView {
     padding: 16px 0px;
     background: black;
     position: relative;
@@ -27,8 +27,8 @@ ul {
 .screen {
     background: black;
     position: relative;
-    width: 640px;
-    height: 480px;
+    width: 400px;
+    height: 300px;
 }
 
 .container {

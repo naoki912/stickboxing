@@ -14,7 +14,7 @@ export var MainMenuView = () =>
           Stick Boxing
         </h1>
         <ul>
-          <li><Link to="/stages" className={styles.button}>
+          <li><Link to="/stage_list" className={styles.button}>
             PLAY
           </Link></li>
           <li><Link to="/character" className={styles.button}>

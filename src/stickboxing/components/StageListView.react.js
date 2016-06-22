@@ -1,6 +1,6 @@
 import * as React from "react"
 import { StageView } from "stickboxing/components/StageView"
-import * as styles from "stickboxing/styles/StagesStyles"
+import * as styles from "stickboxing/styles/StageListViewStyles"
 
 var test_data = [
   { id: 0, name: "Name1", image: "/images/stage1.jpg" },
@@ -10,7 +10,7 @@ var test_data = [
   { id: 4, name: "Name5", image: "/images/stage1.jpg" }
 ]
 
-export var StagesView = (props) =>
+export var StageListView = (props) =>
     <div className={styles.stages}>
       <div className={styles.title}>
         STAGE SELECT

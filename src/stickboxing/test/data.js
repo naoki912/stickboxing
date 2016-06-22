@@ -1,19 +1,16 @@
 export var settings = {
     buttonLayout: {
         allowButtonPosition: {
-            x: 100 ,y: 100
-        },
-        heavyPunchButtonPosition: {
-            x: 120, y: 100
+            x: 100 ,y: 260
         },
         guardButtonPosition: {
-            x: 130, y: 100
+            x: 480, y: 200
         },
         lightPunchButtonPosition: {
-            x: 140, y: 100
+            x: 420, y: 260
         },
-        specialButtonPosition: {
-            x: 150, y: 100
+        heavyPunchButtonPosition: {
+            x: 480, y: 260
         }
     }
 }
