@@ -64,6 +64,5 @@ export var BattleViewContainer = class extends React.Component {
                 )
                 self.forceUpdate()
             }}/>
-            
     }
 }

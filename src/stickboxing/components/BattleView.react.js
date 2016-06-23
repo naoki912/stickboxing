@@ -1,4 +1,5 @@
 import * as React from "react"
+import { ButtonView } from "stickboxing/components/ButtonView"
 import * as styles from "stickboxing/styles/BattleViewStyles"
 
 export var BattleView = (props) =>
@@ -17,38 +18,35 @@ export var BattleView = (props) =>
             left: props.settings.buttonLayout.allowButtonsPosition.x + "px",
             top: props.settings.buttonLayout.allowButtonsPosition.y + "px"
         }}>
-        <div className={styles.upAllowButton}
+        <ButtonView className={styles.upAllowButton}
           onMouseDown={props.onUpAllowButtonPressed}>
           ↑
-        </div>
-        <div className={styles.rightAllowButton}
+        </ButtonView>
+        <ButtonView className={styles.rightAllowButton}
           onMouseDown={props.onRightAllowButtonPressed}>
           →
-        </div>
-        <div className={styles.downAllowButton}
+        </ButtonView>
+        <ButtonView className={styles.downAllowButton}
           onMouseDown={props.onDownAllowButtonPressed}>
           ↓
-        </div>
-        <div className={styles.leftAllowButton}
+        </ButtonView>
+        <ButtonView className={styles.leftAllowButton}
           onMouseDown={props.onLeftAllowButtonPressed}>
           ←
-        </div>
+        </ButtonView>
       </div>
-      <LightPunchButtonView
-        style={{
-            left: props.settings.buttonLayout.lightPunchButtonPosition.x + "px",
-            top: props.settings.buttonLayout.lightPunchButtonPosition.y + "px"
-        }}/>
-      <HeavyPunchButtonView
-        style={{
-            left: props.settings.buttonLayout.heavyPunchButtonPosition.x + "px",
-            top: props.settings.buttonLayout.heavyPunchButtonPosition.y + "px"
-        }}/>
-      <GuardButtonView
-        style={{
-            left: props.settings.buttonLayout.guardButtonPosition.x + "px",
-            top: props.settings.buttonLayout.guardButtonPosition.y + "px"
-        }}/>
+      <ButtonView className={styles.lightPunchButtonView}
+        position={props.settings.buttonLayout.lightPunchButtonPosition}>
+        L
+      </ButtonView>
+      <ButtonView className={styles.heavyPunchButtonView}
+        position={props.settings.buttonLayout.heavyPunchButtonPosition}>
+        H
+      </ButtonView>
+      <ButtonView className={styles.guardButtonView}
+        position={props.settings.buttonLayout.guardButtonPosition}>
+        G
+      </ButtonView>
       <PlayerView player={props.player1}/>
       <PlayerView player={props.player2}/>
     </div>
@@ -69,22 +67,6 @@ var VitalityGaugeView = (props) => {
               width: percentage + "%"
           }}/>
 }
-    
-
-var LightPunchButtonView = (props) => 
-    <div {...props} className={styles.lightPunchButtonView}>
-      L
-    </div>
-
-var HeavyPunchButtonView = (props) => 
-    <div {...props} className={styles.heavyPunchButtonView}>
-      H
-    </div>
-
-var GuardButtonView = (props) =>
-    <div {...props} className={styles.guardButtonView}>
-      G
-    </div>
 
 var PlayerView = (props) =>
     <div {...props} className={styles.playerView}
