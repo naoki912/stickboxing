@@ -1,5 +1,5 @@
 .title {
-    margin-bottom: 64px;
+  /*  margin-bottom: 64px;*/
     padding: 0px 32px;
     color: white;
     font-family: "Audiowide";
@@ -7,3 +7,16 @@
     
     background: black;
 }
+.character {
+    padding: 16px 0px;
+    background-color: blue; 
+    position: relative;
+    width: 560px;
+    height: 315px;
+}
+.list{
+    overflow: scroll; 
+    width: 150px;
+    height: 280px;
+    background-color: red;
+   }
