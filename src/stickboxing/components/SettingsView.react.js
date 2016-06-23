@@ -3,14 +3,14 @@ import * as battleViewStyles from "stickboxing/styles/BattleViewStyles"
 import * as styles from "stickboxing/styles/SettingsViewStyles"
 import { settings } from "stickboxing/test/data"
 
-let onButtonMouseDown = (event) => {
-    let button = event.currentTarget
-    let buttonRect = button.getBoundingClientRect()
-    let parentRect = button.parentElement.getBoundingClientRect()
-    let maxX = parentRect.width - buttonRect.width
-    let maxY = parentRect.height - buttonRect.height
-    let x = parseInt(button.style.left) - event.clientX
-    let y = parseInt(button.style.top) - event.clientY
+var onButtonMouseDown = (event) => {
+    var button = event.currentTarget
+    var buttonRect = button.getBoundingClientRect()
+    var parentRect = button.parentElement.getBoundingClientRect()
+    var maxX = parentRect.width - buttonRect.width
+    var maxY = parentRect.height - buttonRect.height
+    var x = parseInt(button.style.left) - event.clientX
+    var y = parseInt(button.style.top) - event.clientY
 
     document.body.onmousemove = (event) => {
         button.style.left = Math.min(Math.max(x + event.clientX, 0), maxX) + "px"
@@ -22,20 +22,20 @@ let onButtonMouseDown = (event) => {
     }
 }
 
-let onButtonTouchStart = (event) => {
-    let button = event.currentTarget
-    let buttonRect = button.getBoundingClientRect()
-    let parentRect = button.parentElement.getBoundingClientRect()
-    let maxX = parentRect.width - buttonRect.width
-    let maxY = parentRect.height - buttonRect.height
-    let touch = event.targetTouches[0]
-    let x = parseInt(button.style.left) - touch.clientX
-    let y = parseInt(button.style.top) - touch.clientY
+var onButtonTouchStart = (event) => {
+    var button = event.currentTarget
+    var buttonRect = button.getBoundingClientRect()
+    var parentRect = button.parentElement.getBoundingClientRect()
+    var maxX = parentRect.width - buttonRect.width
+    var maxY = parentRect.height - buttonRect.height
+    var touch = event.targetTouches[0]
+    var x = parseInt(button.style.left) - touch.clientX
+    var y = parseInt(button.style.top) - touch.clientY
 
     document.body.ontouchmove = (event) => {
         event.preventDefault()
 
-        let touch = event.targetTouches[0]
+        var touch = event.targetTouches[0]
 
         button.style.left = Math.min(Math.max(x + touch.clientX, 0), maxX) + "px"
         button.style.top = Math.min(Math.max(y + touch.clientY, 0), maxY) + "px"
@@ -46,14 +46,14 @@ let onButtonTouchStart = (event) => {
     }
 }
 
-let Button = (props) => 
+var Button = (props) => 
     <div
       {...props}
       className={battleViewStyles.button}
       onMouseDown={onButtonMouseDown}
       onTouchStart={onButtonTouchStart}/>
 
-export let SettingsView = (props) =>
+export var SettingsView = (props) =>
     <div className={styles.settingsView}>
       <h1 className={styles.title}>
         Settings

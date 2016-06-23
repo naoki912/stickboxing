@@ -57,14 +57,20 @@
     height: 8px;
     background: linear-gradient(90deg, #3f5, #ff2);
     opacity: 0.9;
+    transition: all 500ms ease-out;
 }
 
 .vitalityGaugeView2 {
     composes: vitalityGaugeView;
-    background: linear-gradient(90deg, #ff2, #f22);
+    background: linear-gradient(90deg, #ff2, #f92);
 }
 
 .vitalityGaugeView3 {
+    composes: vitalityGaugeView;
+    background: linear-gradient(90deg, #f92, #f22);
+}
+
+.vitalityGaugeView4 {
     composes: vitalityGaugeView;
     background: linear-gradient(90deg, #f22, #f00);
 }
@@ -91,19 +97,64 @@
     text-align: center;
 }
 
-.lightPunchButton {
+.lightPunchButtonView {
     composes: button;
     background: linear-gradient(#fb0, #950);
 }
 
-.heavyPunchButton {
+.heavyPunchButtonView {
     composes: button;
     background: linear-gradient(#f70, #910);
 }
 
-.guardButton {
+.guardButtonView {
     composes: button;
     background: linear-gradient(#08f, #029);
+}
+
+.allowButtonsContainer {
+    position: absolute;
+}
+
+.allowButton {
+    composes: button;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    background: linear-gradient(#999, #444);
+    font-size: 16px;
+    line-height: 32px;
+}
+
+.upAllowButton {
+    composes: allowButton;
+    left: 32px;
+    top: 0;
+}
+
+.rightAllowButton {
+    composes: allowButton;
+    left: 64px;
+    top: 32px;
+}
+
+.downAllowButton {
+    composes: allowButton;
+    left: 32px;
+    top: 64px;
+}
+
+.leftAllowButton {
+    composes: allowButton;
+    left: 0;
+    top: 32px;
+}
+
+.playerView {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: auto 100%;
 }
 
 /*test */
