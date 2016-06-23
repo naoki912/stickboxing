@@ -25,7 +25,7 @@ export var StageListView = (props) =>
               </li>
       )}
       </ul>
-      <input type="submit" value="決定！" onSubmit={() => props.onStageSelected(stage)} />
+      <input type="button" value="決定！" onClick={() => props.onStageSelected(stage)}/>
       </form>
       
       
