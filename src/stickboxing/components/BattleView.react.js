@@ -36,15 +36,18 @@ export var BattleView = (props) =>
         </ButtonView>
       </div>
       <ButtonView className={styles.lightPunchButtonView}
-        position={props.settings.buttonLayout.lightPunchButtonPosition}>
+        position={props.settings.buttonLayout.lightPunchButtonPosition}
+        onMouseDown={props.onlightPunchButtonPressed}>
         L
       </ButtonView>
       <ButtonView className={styles.heavyPunchButtonView}
-        position={props.settings.buttonLayout.heavyPunchButtonPosition}>
+        position={props.settings.buttonLayout.heavyPunchButtonPosition}
+        onMouseDown={props.onHeavyPunchButtonPressed}>
         H
       </ButtonView>
       <ButtonView className={styles.guardButtonView}
-        position={props.settings.buttonLayout.guardButtonPosition}>
+        position={props.settings.buttonLayout.guardButtonPosition}
+        onMouseDown={props.onGuardButtonPressed}>
         G
       </ButtonView>
       <PlayerView player={props.player1}/>
