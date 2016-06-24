@@ -12,6 +12,7 @@
 }
 
 .info {
+    z-index: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -86,6 +87,7 @@
 }
 
 .button {
+    z-index: 1;
     position: absolute;
     width: 48px;
     height: 48px;
@@ -97,17 +99,17 @@
     text-align: center;
 }
 
-.lightPunchButtonView {
+.lightPunchButton {
     composes: button;
     background: linear-gradient(#fb0, #950);
 }
 
-.heavyPunchButtonView {
+.heavyPunchButton {
     composes: button;
     background: linear-gradient(#f70, #910);
 }
 
-.guardButtonView {
+.guardButton {
     composes: button;
     background: linear-gradient(#08f, #029);
 }
@@ -149,6 +151,13 @@
     composes: allowButton;
     left: 0;
     top: 32px;
+}
+
+.field {
+    position: absolute;
+    z-index: 0;
+    left: 0;
+    bottom: 50px;
 }
 
 .playerView {
