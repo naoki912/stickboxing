@@ -35,28 +35,31 @@ export var BattleView = (props) =>
           ←
         </ButtonView>
       </div>
-      <ButtonView className={styles.lightPunchButtonView}
+      <ButtonView className={styles.lightPunchButton}
         position={props.settings.buttonLayout.lightPunchButtonPosition}
         onMouseDown={props.onlightPunchButtonPressed}>
         L
       </ButtonView>
-      <ButtonView className={styles.heavyPunchButtonView}
+      <ButtonView className={styles.heavyPunchButton}
         position={props.settings.buttonLayout.heavyPunchButtonPosition}
         onMouseDown={props.onHeavyPunchButtonPressed}>
         H
       </ButtonView>
-      <ButtonView className={styles.guardButtonView}
+      <ButtonView className={styles.guardButton}
         position={props.settings.buttonLayout.guardButtonPosition}
         onMouseDown={props.onGuardButtonPressed}>
         G
       </ButtonView>
-      <PlayerView player={props.player1}/>
-      <PlayerView player={props.player2}/>
+      <div className={styles.field}>
+        <PlayerView player={props.player1}/>
+        <PlayerView player={props.player2}/>
+      </div>
     </div>
 
 var VitalityGaugeView = (props) => {
     var percentage = Math.ceil(props.player.vitality / props.player.maxVitality * 100)
-    return <div {...props}
+    return (
+        <div {...props}
           className={
               percentage > 50
                   ? styles.vitalityGaugeView
@@ -69,13 +72,14 @@ var VitalityGaugeView = (props) => {
           style={{
               width: percentage + "%"
           }}/>
+    )
 }
 
 var PlayerView = (props) =>
     <div {...props} className={styles.playerView}
       style={{
           left: props.player.position.x + "px",
-          top: props.player.position.y + "px",
+          bottom: props.player.position.y + "px",
           width: props.player.size.width + "px",
           height: props.player.size.width + "px",
           backgroundImage: "url(" + props.player.image + ")"

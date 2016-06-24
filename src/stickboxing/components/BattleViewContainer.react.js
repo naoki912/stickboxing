@@ -1,5 +1,6 @@
 import * as React from "react"
 import { BattleView } from "stickboxing/components/BattleView"
+import * as engine from "stickboxing/physics/engine"
 
 export var BattleViewContainer = class extends React.Component {
     constructor(props) {
@@ -9,15 +10,19 @@ export var BattleViewContainer = class extends React.Component {
             player1: {
                 image: "/images/player.png",
                 maxVitality: 100,
-                position: { x: 100, y: 120 },
-                size: { width: 120, height: 200 },
+                position: { x: 100, y: 0 },
+                velocity: { x: 0, y: 0 },
+                acceleration: { x: 0, y: -9.8 },
+                size: { width: 120, height: 120 },
                 vitality: 100,
             },
             player2: {
                 image: "/images/player.png",
                 maxVitality: 100,
-                position: { x: 400, y: 120 },
-                size: { width: 120, height: 200 },
+                position: { x: 400, y: 0 },
+                velocity: { x: 0, y: 0 },
+                acceleration: { x: 0, y: -9.8 },
+                size: { width: 120, height: 120 },
                 vitality: 100,
             },
             settings: {
@@ -39,30 +44,51 @@ export var BattleViewContainer = class extends React.Component {
         }
     }
 
+    componentDidMount() {
+        window.self = this
+        var self = this
+        var prev = Date.now()
+        var id = setInterval(() => {
+            var next = Date.now()
+            var entries = engine.next((next - prev) / 1000, [
+                self.state.player1,
+                self.state.player2
+            ])
+            self.state.player1 = entries[0]
+            self.state.player2 = entries[1]
+            self.forceUpdate()
+            prev = next
+        }, 16)
+    }
+
     render() {
         var self = this
         return <BattleView {...this.state}
-            onUpAllowButtonPressed={() => {
-                self.state.player1.vitality = Math.min(
-                    self.state.player1.vitality + 10,
-                    self.state.player1.maxVitality
-                )
-                self.forceUpdate()
+            onUpAllowButtonPressed={(event) => jump(self.state.player1)}
+            onRightAllowButtonPressed={(event) => {
+                moveRight(self.state.player1)
+                var id = setInterval(() => moveRight(self.state.player1), 16)
+                event.currentTarget.onmouseup = () => {
+                    clearInterval(id)
+                }
             }}
-            onRightAllowButtonPressed={() => {
-                self.state.player1.position.x += 1
-                self.forceUpdate()
-            }}
-            onLeftAllowButtonPressed={() => {
-                self.state.player1.position.x -= 1
-                self.forceUpdate()
+            onLeftAllowButtonPressed={(event) => {
+                moveLeft(self.state.player1)
+                var id = setInterval(() => moveLeft(self.state.player1), 16)
+                event.currentTarget.onmouseup = () => {
+                    clearInterval(id)
+                }
             }}
             onDownAllowButtonPressed={() => {
                 self.state.player1.vitality = Math.max(
                     self.state.player1.vitality - 10,
                     0
                 )
-                self.forceUpdate()
             }}/>
     }
 }
+
+var jump = (player) => player.velocity.y += 4
+var squat = (player) => undefined
+var moveLeft = (player) => player.position.x -= 3
+var moveRight = (player) => player.position.x += 3
