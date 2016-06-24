@@ -46,33 +46,15 @@ var testHasGlobeList = [
 
 export var CharacterView = (props) =>
     <div className={styles.character}>
-      <div className={styles.title}>
-        Character
-      </div>
-      <div className={styles.list}>
-          GlobeList
-        <ul>
-        {globeList.map((globe) => <li>{globe.name}</li>)}
-        </ul>
-        PantList
-        <ul>
-        {pantsList.map((pants) => <li>{pants.name}</li>)}
-      </ul>
-      BeltList
-      <ul>
-        {beltList.map((belt) => <li>{belt.name}</li>)}
-      </ul>
-      HasGlobeList
-      <ul>
-        {hasGlobeList.map((globe) => <li>{globe.name}</li>)}
-      </ul>
-      HasPantsList
-      <ul>
-        {hasPantsList.map((pants) => <li>{ pants.name }</li>)}
-      </ul> 
-      HasBeltList
-       <ul>
-        {hasBeltList.map((belt) => <li>{belt.name}</li>)}
-        </ul>
-      </div>
+        <div className={styles.title}>
+            Character
+        </div>
+        <div>
+        </div>
+        <select     size = "3" className={styles.list}>
+                {globeList.map((globe) => <option>{globe.name}</option>)}
+                {pantsList.map((pants) => <option>{pants.name}</option>)}
+                {beltList.map((belt) => <option>{belt.name}</option>)}
+                {beltList.map((belt) => <option>{belt.name}</option>)}
+        </select>
     </div>

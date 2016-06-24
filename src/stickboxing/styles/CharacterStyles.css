@@ -17,6 +17,8 @@
 .list{
     overflow: scroll; 
     width: 150px;
-    height: 280px;
+    height: 290px;
     background-color: red;
-   }
+    float: right;
+    font-size: 30px;
+}
