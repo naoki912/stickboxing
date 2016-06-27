@@ -1,5 +1,6 @@
 import * as React from "react"
 import * as styles from "stickboxing/styles/CharacterStyles.css"
+import { ButtonView } from "stickboxing/components/ButtonView"
 
 
 var globeList = [
@@ -49,12 +50,18 @@ export var CharacterView = (props) =>
         <div className={styles.title}>
             Character
         </div>
-        <div>
-        </div>
-        <select     size = "3" className={styles.list}>
+        <img src="/images/player.png" width="192" height="192" className={styles.cyara}></img>
+        <ButtonView className={styles.rightAllowButton}
+          onMouseDown={props.onRightAllowButtonPressed}>
+          →
+        </ButtonView>
+        
+        <div >
+        <select size = "3" className={styles.list}>
                 {globeList.map((globe) => <option>{globe.name}</option>)}
                 {pantsList.map((pants) => <option>{pants.name}</option>)}
                 {beltList.map((belt) => <option>{belt.name}</option>)}
                 {beltList.map((belt) => <option>{belt.name}</option>)}
         </select>
+        </div>
     </div>
