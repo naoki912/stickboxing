@@ -1,7 +1,7 @@
 export var settings = {
     buttonLayout: {
-        allowButtonsPosition: {
-            x: 10 ,y: 210
+        dPadPosition: {
+            x: 10, y: 210
         },
         guardButtonPosition: {
             x: 500, y: 200

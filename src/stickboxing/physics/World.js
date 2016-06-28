@@ -1,24 +1,25 @@
+import { merge } from "stickboxing/utils/Object"
 
-export var next = (elapsed, entities) => {
+export var updateEntities = (deltaTime, world, entities) => {
     var entities2 = entities.map((entry) => {
         var velocity = {
-            x: entry.velocity.x + entry.acceleration.x * elapsed,
-            y: entry.velocity.y + entry.acceleration.y * elapsed
+            x: entry.velocity.x + world.gravity.x * deltaTime,
+            y: entry.velocity.y + world.gravity.y * deltaTime
         }
-        return Object.assign({}, entry, {
+        return merge(entry, {
             position: {
-                x: entry.position.x + velocity.x * elapsed * 200,
-                y: entry.position.y + velocity.y * elapsed * 200
+                x: entry.position.x + velocity.x * deltaTime * 200,
+                y: entry.position.y + velocity.y * deltaTime * 200
             },
             velocity: velocity
         })
     })
 
     return entities2.map((entry) => {
-        return Object.assign({}, entry, {
+        return merge(entry, {
             position: {
                 x: Math.min(Math.max(entry.position.x, 0), 560 - entry.size.width),
-                y: Math.min(Math.max(entry.position.y, 0), 315 - entry.size.height)
+                y: Math.min(Math.max(entry.position.y, 0), 260 - entry.size.height)
             },
             velocity: {
                 x: entry.position.x > 0 ? entry.velocity.x : 0,
