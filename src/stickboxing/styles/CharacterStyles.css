@@ -26,3 +26,13 @@
 .cyara{
     float: left;
 }
+.button{
+    position: absolute;
+    bottom: 10px;
+    left: 50px;
+    height: 40px;
+    font-size: 20px;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius: 5px; 
+}
