@@ -10,9 +10,11 @@
 }
 .stage{
         background:#999999;
-        margin-right: 10px;
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-bottom: 7px;
 }
 .stage:hover{
-        background:#000000;
-        transform:scale(1.05,1.05);
+        background:red;
+        transform:scale(1.1,1.1);
 }

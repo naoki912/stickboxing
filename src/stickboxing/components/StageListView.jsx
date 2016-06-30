@@ -3,7 +3,7 @@ import { StageView } from "stickboxing/components/StageView"
 import * as styles from "stickboxing/styles/StageListViewStyles"
 import { ButtonView } from "stickboxing/components/ButtonView"
 
-var selectStage = [{id: 0, name: "Name1", image: "/images/stage1.jpg"}]
+var selectStage = []
 
 var test_data = [
   { id: 0, name: "Name1", image: "/images/stage1.jpg" },
