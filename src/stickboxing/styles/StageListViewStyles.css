@@ -14,6 +14,17 @@
 .stageLine{
     display: flex;
     overflow-x: scroll;
+    overflow-y: hidden;
     margin-left:10px;
     margin-right:10px;
+}
+.selectButton{
+    display: block;
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: blue;
+    color: white;
+    width: 80px;
+    height: 40px;
+    font-size:20px;
 }

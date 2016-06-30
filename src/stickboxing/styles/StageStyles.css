@@ -1,12 +1,12 @@
 .image {
-        width: 200px;
-        height:150px; 
+        width: 140px;
+        height:105px; 
 }
 .name {
        font-family: "Audiowide";
         color:white;
         padding: 2px;
-        font-size: 30px;
+        font-size: 20px;
 }
 .stage{
         background:#999999;
@@ -14,7 +14,5 @@
 }
 .stage:hover{
         background:#000000;
-}
-.stage:hover .image{
-        zoom:1.1;
+        transform:scale(1.05,1.05);
 }
