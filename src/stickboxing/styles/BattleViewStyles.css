@@ -1,6 +1,8 @@
-.vitarityGaugeContainerVie{
-    height: 20px;
-    background-color:red;
+* {
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
 }
 
 .battleView {
@@ -24,10 +26,11 @@
 }
 
 .time {
-    margin: 0 8px;
+    width: 64px;
     color: white;
     font-size: 28px;
     font-weight: bold;
+    text-align: center;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
@@ -114,11 +117,11 @@
     background: linear-gradient(#08f, #029);
 }
 
-.allowButtonsContainer {
+.directionalPad {
     position: absolute;
 }
 
-.allowButton {
+.arrowButton {
     composes: button;
     position: absolute;
     width: 32px;
@@ -129,26 +132,26 @@
     line-height: 32px;
 }
 
-.upAllowButton {
-    composes: allowButton;
+.upArrowButton {
+    composes: arrowButton;
     left: 32px;
     top: 0;
 }
 
-.rightAllowButton {
-    composes: allowButton;
+.rightArrowButton {
+    composes: arrowButton;
     left: 64px;
     top: 32px;
 }
 
-.downAllowButton {
-    composes: allowButton;
+.downArrowButton {
+    composes: arrowButton;
     left: 32px;
     top: 64px;
 }
 
-.leftAllowButton {
-    composes: allowButton;
+.leftArrowButton {
+    composes: arrowButton;
     left: 0;
     top: 32px;
 }
