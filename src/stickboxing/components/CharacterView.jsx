@@ -28,19 +28,14 @@ var money = 100
 export var CharacterView = (props) =>
     <div className={styles.character}>
         <div className={styles.title}>
-            Character 
+            Character {"　　　　　　　コイン"}{money }
         </div>
-var cnt = 30;
-console.log(cnt + "点ゲット！");
         <img src="/images/player.png" width="192" height="192" className={styles.cyara}></img>
-        <button className={styles.button} name="btn"> 変更 </button>
-        <div >
-        <select size = "3" className={styles.list}>
-            <option selected="selected">装備</option>
-            {globeList.map((globe) => <option>{globe.name}</option>)}
-            {pantsList.map((pants) => <option>{pants.name}</option>)}
-            {beltList.map((belt) => <option>{belt.name}</option>)}
-            {beltList.map((belt) => <option>{belt.name}</option>)}
+        <select size = "3" className={styles.list} name="itemlist">
+            {globeList.map((globe) => <option value={globe.name}>{globe.name}</option>)}
+            {pantsList.map((pants) => <option value={pants.name}>{pants.name}</option>)}
+            {beltList.map((belt) => <option value={belt.name}>{belt.name}</option>)}
         </select>
-        </div>
+        <button className={styles.button} name="btn">
+       </button>
     </div>
