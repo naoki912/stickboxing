@@ -3,7 +3,7 @@ import { StageView } from "stickboxing/components/StageView"
 import * as styles from "stickboxing/styles/StageListViewStyles"
 import { ButtonView } from "stickboxing/components/ButtonView"
 
-var selectStage = []
+var selectStageID = 0
 
 var test_data = [
   { id: 0, name: "Name1", image: "/images/stage1.jpg" },
@@ -23,12 +23,12 @@ export var StageListView = (props) =>
       {test_data.map(
           (stage) =>
               <li key={stage.id} >
-                <StageView onTouchStart="selectStage = stage"  stage={stage} />
+                <StageView onTouchStart={() => props.onStageSelecteListener(stage)}  stage={stage} />
               </li>
       )}
       </ul>
       <ButtonView className={styles.selectButton}  onTouchStart={() => props.onStageSelecteListener(selectStage)}>
-      決定！
+      {selectStageID == null ? null : selectStageID}
       </ButtonView>
     </div>
     
