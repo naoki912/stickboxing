@@ -3,7 +3,9 @@ import { StageView } from "stickboxing/components/StageView"
 import * as styles from "stickboxing/styles/StageListViewStyles"
 import { ButtonView } from "stickboxing/components/ButtonView"
 
-var selectStageID = 0
+var selectStageID = 4
+
+
 
 var test_data = [
   { id: 0, name: "Name1", image: "/images/stage1.jpg" },
@@ -22,13 +24,14 @@ export var StageListView = (props) =>
       <ul className={styles.stageLine}> 
       {test_data.map(
           (stage) =>
-              <li key={stage.id} >
+              <li key={stage.id} ><ButtonView className={styles.stageChoice} >
                 <StageView onTouchStart={() => props.onStageSelecteListener(stage)}  stage={stage} />
+                </ButtonView>
               </li>
       )}
       </ul>
       <ButtonView className={styles.selectButton}  onTouchStart={() => props.onStageSelecteListener(selectStage)}>
-      {selectStageID == null ? null : selectStageID}
+      {(selectStageID == null ? null : (selectStageID == 0 ? "Name1に決定" : (selectStageID == 1 ? "Name2に決定" : (selectStageID == 2 ? "Name3に決定" : (selectStageID == 3 ? "Name4に決定" : "Name5に決定")))))}
       </ButtonView>
     </div>
     

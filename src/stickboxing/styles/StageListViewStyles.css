@@ -24,10 +24,14 @@
     margin-top: 10px;
     background-color: #aa5fff;
     color: white;
-    width: 80px;
+    float:center;
     height: 40px;
     font-size:20px;
     border-radius:10px;
     box-shadow: 2px 2px #555;
     text-shadow: 2px 2px #555;
+}
+.stageChoice{
+    display: block;
+    float:left;
 }
