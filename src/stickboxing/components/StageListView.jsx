@@ -31,7 +31,12 @@ export var StageListView = (props) =>
       )}
       </ul>
       <ButtonView className={styles.selectButton}  onTouchStart={() => props.onStageSelected(stage)}>
-      {(selectStageID == null ? null : (selectStageID == 0 ? "Name1に決定" : (selectStageID == 1 ? "Name2に決定" : (selectStageID == 2 ? "Name3に決定" : (selectStageID == 3 ? "Name4に決定" : "Name5に決定")))))}
+      {(selectStageID == null ? null
+         : (selectStageID == 0 ? "Name1に決定" 
+         : (selectStageID == 1 ? "Name2に決定" 
+         : (selectStageID == 2 ? "Name3に決定" 
+         : (selectStageID == 3 ? "Name4に決定" 
+         : "Name5に決定")))))}
       </ButtonView>
     </div>
     
