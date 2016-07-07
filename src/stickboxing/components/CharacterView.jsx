@@ -1,6 +1,6 @@
 import React from "react"
 import styles from "stickboxing/styles/CharacterStyles.css"
-import { ButtonView } from "stickboxing/components/ButtonView"
+import ButtonView from "stickboxing/components/ButtonView"
 
 
 var globeList = [
