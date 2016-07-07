@@ -1,8 +1,8 @@
-import * as React from "react"
-import { Link } from "react-router"
-import * as styles from "stickboxing/styles/MainMenuStyles"
+import React from "react"
+import {Link} from "react-router"
+import styles from "stickboxing/styles/MainMenuStyles"
 
-export var MainMenuView = () =>
+export default () =>
     <div className={styles.mainMenu}>
       <div className={styles.container}>
         <h1 className={styles.title}>

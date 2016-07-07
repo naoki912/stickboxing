@@ -15,7 +15,7 @@ var test_data = [
   { id: 4, name: "Name5", image: "/images/stage1.jpg" }
 ]
 
-export var StageListView = (props) =>
+export default (props) =>
     <div className={styles.stages}>
       <div className={styles.title}>
         STAGE SELECT

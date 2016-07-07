@@ -1,148 +1,184 @@
-import * as React from "react"
-import { BattleView } from "stickboxing/components/BattleView"
-import * as world from "stickboxing/physics/World"
-import { merge } from "stickboxing/utils/Object"
+import React from "react"
+import BattleView from "stickboxing/components/BattleView"
+import Enum from "stickboxing/data/Enum"
+import List from "stickboxing/data/List"
+import Player from "stickboxing/data/Player"
+import Vector from "stickboxing/geometry/Vector"
+import Vector2 from "stickboxing/geometry/Vector2"
+import Vector3 from "stickboxing/geometry/Vector3"
+import Entity from "stickboxing/physics/Entity"
+import * as World from "stickboxing/physics/World"
 
-export var BattleViewContainer = class extends React.Component {
+var {map, zip} = Enum
+var {add, multiply} = Vector
+
+export default class extends React.Component {
     constructor(props) {
         super(props)
 
         this.state = {
             time: 60,
-            lastTime:
-             Date.now(),
+            lastTime: Date.now(),
             players: [
-                {
-                    image: "/images/player.png",
-                    position: {x: 20, y: 0},
-                    velocity: {x: 0, y: 0},
-                    size: {width: 120, height: 120},
+                Player({
+                    image: "/images/player.gif",
+                    rotation: Vector3([0, 0, 0]),
+                    position: Vector2([20, 0]),
+                    velocity: Vector2([0, 0]),
+                    size: Vector2([120, 190]),
+                    type: 1,
                     vitality: 100,
-                    maxVitality: 100
-                },
-                {
-                    image: "/images/player.png",
-                    position: {x: 460, y: 0},
-                    velocity: {x: 0, y: 0},
-                    size: {width: 120, height: 120},
+                    maxVitality: 100,
+                    action: "NONE"
+                }),
+                Player({
+                    image: "/images/player.gif",
+                    rotation: Vector3([0, 180, 0]),
+                    position: Vector2([430, 0]),
+                    velocity: Vector2([0, 0]),
+                    size: Vector2([120, 190]),
+                    type: 1,
                     vitality: 100,
-                    maxVitality: 100
-                }
+                    maxVitality: 100,
+                    action: "NONE"
+                })
             ],
             settings: {
                 layout: {
-                    directionalPadPosition: {x: 10, y: 210},
-                    guardButtonPosition: {x: 500, y: 200},
-                    lightPunchButtonPosition: {x: 440, y: 260},
-                    heavyPunchButtonPosition: {x: 500, y: 260}
+                    directionalPadPosition: Vector2([10, 210]),
+                    lightPunchButtonPosition: Vector2([380, 260]),
+                    heavyPunchButtonPosition: Vector2([440, 260]),
+                    guardButtonPosition: Vector2([500, 260])
                 }
             },
             stage: {
-                image: "/images/stage0.jpg"
+                image: "/images/stage0.svg"
             },
             world: {
-                gravity: {x: 0, y: -9.8}
+                gravity: Vector2([0, -9.8]),
+                scale: 160
             }
         }
     }
 
     componentDidMount() {
-        var self = this
-
         window.onkeydown = (event) => {
             event.preventDefault()
 
-            switch (event.key) {
-                case "ArrowUp":
-                    self.state.players[0] = jump(self.state.players[0])
-                    return
-                case "ArrowRight":
-                    self.state.players[0] = moveRight(self.state.players[0])
-                    return
-                case "ArrowDown":
-                    self.state.players[0].vitality *= 0.5
-                    self.state.world.gravity.y *= -1
-                    return
-                case "ArrowLeft":
-                    self.state.players[0] = moveLeft(self.state.players[0])
-                    return
-            }
+            var {key} = event
+            var {players} = this.state
+            var player = players[0]
+
+            player.action[
+                key == "ArrowUp"    ? "Jump"
+              : key == "ArrowRight" ? "MoveRight"
+              : key == "ArrowDown"  ? "None"
+              : key == "ArrowLeft"  ? "MoveLeft"
+              : "Other"
+            ] = true
+        }
+
+        window.onkeyup = (event) => {
+            event.preventDefault()
+
+            var {key} = event
+            var {players} = this.state
+            var player = players[0]
+
+            player.action[
+                key == "ArrowUp"    ? "Jump"
+              : key == "ArrowRight" ? "MoveRight"
+              : key == "ArrowDown"  ? "None"
+              : key == "ArrowLeft"  ? "MoveLeft"
+              : "Other"
+            ] = false
         }
 
         var secondsIntervelID = setInterval(() => {
-            if (self.state.time > 0)
-                self.setState({time: self.state.time - 1})
+            if (this.state.time > 0)
+                this.setState({time: this.state.time - 1})
             else
                 clearInterval(secondsIntervelID)
         }, 1000)
 
-        self.setState({prev: Date.now()})
+        this.setState({prev: Date.now()})
         var frameIntervalID = setInterval(() => {
             var now = Date.now()
-            var players = world.updateEntities(
-                (now - self.state.lastTime) / 1000,
-                self.state.world,
+            var {lastTime, players, world} = this.state
+/*            var {player: {action}} = players[0]
+
+            if (action["Jump"])
+                players[0] = jump(players[0])
+            if (action["MoveRight"])
+                players[0] = moveRight(players[0])
+            if (action["MoveLeft"])
+                players[0] = moveLeft(players[0])
+*/
+            var entities = World.updateEntities(
+                world,
                 [
-                    ...self.state.players,
-                ]
+                    ...map(players, Entity),
+                    Entity({
+                        rotation: Vector2([0, 0]),
+                        position: Vector2([0, -100]),
+                        velocity: Vector2([0, 0]),
+                        size: Vector2([1000, 100]),
+                        type: 0
+                    })
+                ],
+                (now - lastTime) / 1000
             )
-            self.setState({lastTime: now, players: players})
+
+            this.setState({
+                lastTime: now,
+                players: map(zip(players, entities), ([p, e]) => p(e))
+            })
         }, 16)
     }
 
     render() {
-        var self = this
-
         return <BattleView {...this.state}
             onUpArrowButtonPressed={(event) =>
-                self.state.players[0] = jump(self.state.players[0])
+                this.state.players[0] = jump(this.state.players[0])
             }
             onRightArrowButtonPressed={(event) => {
-                self.state.players[0] = moveRight(self.state.players[0])
+                this.state.players[0] = moveRight(this.state.players[0])
 
                 var id = setInterval(() =>
-                    self.state.players[0] = moveRight(self.state.players[0])
+                    this.state.players[0] = moveRight(this.state.players[0])
                 , 16)
 
                 window.ontouchend = () => clearInterval(id)
             }}
             onLeftArrowButtonPressed={(event) => {
-                moveLeft(self.state.player1)
+                moveLeft(this.state.player1)
 
                 var id = setInterval(() =>
-                    self.state.player1 = moveLeft(self.state.player1)
+                    this.state.player1 = moveLeft(this.state.player1)
                 , 16)
 
                 window.ontouchend = () => clearInterval(id)
             }}
             onDownArrowButtonPressed={() => {
-                self.state.player1.vitality = Math.max(
-                    self.state.player1.vitality * 0.5,
+                this.state.player1.vitality = Math.max(
+                    this.state.player1.vitality * 0.5,
                     0
                 )
-            }}/>
+            }}
+        />
     }
 }
 
-var jump = (player) => player.position.y > 0 ? player : merge(player, {
-    velocity: {
-        x: player.velocity.x,
-        y: player.velocity.y + 4
-    }
+var jump = (player) => player.position[1] > 0 ? player : player({
+    velocity: add(player.velocity, Vector2([0, 5]))
 })
 
 var squat = (player) => undefined
 
-var moveLeft = (player) => merge(player, {
-    position: {
-        x: player.position.x - 3,
-        y: player.position.y
-    }
+var moveLeft = (player) => player({
+    position: add(player.position, Vector2([-3, 0]))
 })
 
-var moveRight = (player) => merge(player, {
-    position: {
-        x: player.position.x + 3,
-        y: player.position.y
-    }
+var moveRight = (player) => player({
+    position: add(player.position, Vector2([3, 0]))
 })

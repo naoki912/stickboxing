@@ -1,11 +1,11 @@
-import * as React from "react"
-import * as styles from "stickboxing/styles/ButtonViewStyles"
+import React from "react"
+import styles from "stickboxing/styles/ButtonViewStyles"
 
-export var ButtonView = (props) =>
+export default (props) =>
     <button {...props}
       className={styles.buttonView + " " + props.className}
       style={{
-          left: props.position ? props.position.x + "px" : null,
-          top: props.position ? props.position.y + "px" : null
+          left: props.position ? props.position[0] + "px" : null,
+          top: props.position ? props.position[1] + "px" : null
       }}
       type="button"/>

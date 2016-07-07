@@ -1,87 +1,105 @@
-import * as React from "react"
-import { ButtonView } from "stickboxing/components/ButtonView"
-import * as styles from "stickboxing/styles/BattleViewStyles"
+import React from "react"
+import ButtonView from "stickboxing/components/ButtonView"
+import List from "stickboxing/data/List"
+import Enum from "stickboxing/data/Enum"
+import styles from "stickboxing/styles/BattleViewStyles"
 
-export var BattleView = (props) =>
-    <div className={styles.battleView}
+var {map} = Enum
+
+export default ({
+    onDownArrowButtonPressed,
+    onGuardButtonPressed,
+    onHeavyPunchButtonPressed,
+    onLeftArrowButtonPressed,
+    onLightPunchButtonPressed,
+    onRightArrowButtonPressed,
+    onUpArrowButtonPressed,
+    players,
+    settings,
+    stage,
+    time
+}) =>
+    <div className={styles.BattleView}
       style={{
-          "backgroundImage": "url(" + props.stage.image + ")"
+          "backgroundImage": "url(" + stage.image + ")"
       }}>
-      <div className={styles.info}>
-        <div className={styles.vitalityGaugeContainer1}>
-          <VitalityGaugeView player={props.players[0]}/>
+      <div className={styles.Info}>
+        <div className={styles.VitalityGaugeContainer1}>
+          <VitalityGaugeView player={players[0]}/>
         </div>
-        <div className={styles.time}>{props.time}</div>
-        <div className={styles.vitalityGaugeContainer2}>
-          <VitalityGaugeView player={props.players[1]}/>
+        <div className={styles.Time}>{time}</div>
+        <div className={styles.VitalityGaugeContainer2}>
+          <VitalityGaugeView player={players[1]}/>
         </div>
       </div>
-      <div className={styles.directionalPad}
+      <div className={styles.DirectionalPad}
         style={{
-            left: props.settings.layout.directionalPadPosition.x + "px",
-            top: props.settings.layout.directionalPadPosition.y + "px"
+            left: settings.layout.directionalPadPosition[0] + "px",
+            top: settings.layout.directionalPadPosition[1] + "px"
         }}>
-        <ButtonView className={styles.upArrowButton}
-          onTouchStart={props.onUpArrowButtonPressed}>
+        <ButtonView className={styles.UpArrowButton}
+          onTouchStart={onUpArrowButtonPressed}>
           ↑
         </ButtonView>
-        <ButtonView className={styles.rightArrowButton}
-          onTouchStart={props.onRightArrowButtonPressed}>
+        <ButtonView className={styles.RightArrowButton}
+          onTouchStart={onRightArrowButtonPressed}>
           →
         </ButtonView>
-        <ButtonView className={styles.downArrowButton}
-          onTouchStart={props.onDownArrowButtonPressed}>
+        <ButtonView className={styles.DownArrowButton}
+          onTouchStart={onDownArrowButtonPressed}>
           ↓
         </ButtonView>
-        <ButtonView className={styles.leftArrowButton}
-          onTouchStart={props.onLeftArrowButtonPressed}>
+        <ButtonView className={styles.LeftArrowButton}
+          onTouchStart={onLeftArrowButtonPressed}>
           ←
         </ButtonView>
       </div>
-      <ButtonView className={styles.lightPunchButton}
-        position={props.settings.layout.lightPunchButtonPosition}
-        onTouchStart={props.onlightPunchButtonPressed}>
+      <ButtonView className={styles.LightPunchButton}
+        position={settings.layout.lightPunchButtonPosition}
+        onTouchStart={onLightPunchButtonPressed}>
         L
       </ButtonView>
-      <ButtonView className={styles.heavyPunchButton}
-        position={props.settings.layout.heavyPunchButtonPosition}
-        onTouchStart={props.onHeavyPunchButtonPressed}>
+      <ButtonView className={styles.HeavyPunchButton}
+        position={settings.layout.heavyPunchButtonPosition}
+        onTouchStart={onHeavyPunchButtonPressed}>
         H
       </ButtonView>
-      <ButtonView className={styles.guardButton}
-        position={props.settings.layout.guardButtonPosition}
-        onTouchStart={props.onGuardButtonPressed}>
+      <ButtonView className={styles.GuardButton}
+        position={settings.layout.guardButtonPosition}
+        onTouchStart={onGuardButtonPressed}>
         G
       </ButtonView>
-      <div className={styles.field}>
+      <div className={styles.Field}>
       {
-          props.players.map((player, i) => <PlayerView key={i} player={player}/>)
+          players.map((player, i) => <PlayerView key={i} player={player}/>)
       }
       </div>
     </div>
 
-var VitalityGaugeView = (props) => {
-    var percentage = Math.ceil(props.player.vitality / props.player.maxVitality * 100)
+var VitalityGaugeView = ({player: {vitality, maxVitality}}) => {
+    var percentage = Math.ceil(vitality / maxVitality * 100)
     return (
-        <div {...props}
+        <div
           className={
-              percentage > 50 ? styles.vitalityGaugeView
-            : percentage > 20 ? styles.vitalityGaugeView2
-            : percentage > 10 ? styles.vitalityGaugeView3
-            :                   styles.vitalityGaugeView4
+              percentage > 50 ? styles.VitalityGaugeView
+            : percentage > 20 ? styles.VitalityGaugeView2
+            : percentage > 10 ? styles.VitalityGaugeView3
+            :                   styles.VitalityGaugeView4
           }
           style={{width: percentage + "%"}}/>
     )
 }
 
-var PlayerView = (props) =>
-    <div {...props}
-      className={styles.playerView}
+var PlayerView = ({player: {position, rotation, size, image}}) =>
+    <div
+      className={styles.PlayerView}
       style={{
-          left:   props.player.position.x + "px",
-          bottom: props.player.position.y + "px",
-          width:  props.player.size.width + "px",
-          height: props.player.size.width + "px",
-          backgroundImage: "url(" + props.player.image + ")"
+          left:   position[0] + "px",
+          bottom: position[1] + "px",
+          width:  size[0] + "px",
+          height: size[1] + "px",
+          backgroundImage: "url(" + image + ")",
+          transform:
+              "rotateX(" + rotation[0] + "deg) rotateY(" + rotation[1] + "deg) rotateZ(" + rotation[2] + "deg)"
       }}>
     </div>

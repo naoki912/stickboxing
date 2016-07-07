@@ -1,30 +1,63 @@
-import { merge } from "stickboxing/utils/Object"
+import Enum from "stickboxing/data/Enum"
+import List from "stickboxing/data/List"
+import Vector from "stickboxing/geometry/Vector"
 
-export var updateEntities = (deltaTime, world, entities) => {
-    var entities2 = entities.map((entry) => {
-        var velocity = {
-            x: entry.velocity.x + world.gravity.x * deltaTime,
-            y: entry.velocity.y + world.gravity.y * deltaTime
-        }
-        return merge(entry, {
-            position: {
-                x: entry.position.x + velocity.x * deltaTime * 200,
-                y: entry.position.y + velocity.y * deltaTime * 200
-            },
+var {map, filter} = Enum
+var {add, subtract, multiply} = Vector
+
+export var updateEntities = (world, entities, deltaTime) => {
+    var gravity = multiply(world.gravity, deltaTime)
+
+    var entities2 = map(entities, (entity) => {
+        var velocity = add(entity.velocity, gravity)
+
+        return entity({
+            position: add(entity.position, multiply(velocity, world.scale * deltaTime)),
             velocity: velocity
         })
     })
 
-    return entities2.map((entry) => {
-        return merge(entry, {
-            position: {
-                x: Math.min(Math.max(entry.position.x, 0), 560 - entry.size.width),
-                y: Math.min(Math.max(entry.position.y, 0), 260 - entry.size.height)
-            },
-            velocity: {
-                x: entry.position.x > 0 ? entry.velocity.x : 0,
-                y: entry.position.y > 0 ? entry.velocity.y : 0
-            }
-        })
+    var entities3 = broadphase(...entities2)
+    map(entities3, ([e1, e2]) => {
+        if (e1.type == 1 && e2.type == 1) {
+
+        } else if (e1.type == 1 && e2.type == 0) {
+            //e1.position[0] = e1.
+            //e1.position[1] =
+        } else if (e1.type == 0 && e2.type == 1) {
+
+        }
     })
+
+    return map(entities2, (entity) => entity({
+        position: entity.position({
+            1: Math.max(entity.position[1], 0)
+        }),
+        velocity: entity.velocity([
+            entity.position[0] > 0 ? entity.velocity[0] : 0,
+            entity.position[1] > 0 ? entity.velocity[1] : 0
+        ])
+    }))
+}
+
+var broadphase = (entity, ...tail) =>
+    tail.length > 0
+        ? [
+            ...map(filter(tail, (e) => collide(entity, e)), (e) => [entity, e]),
+            ...broadphase(...tail)
+        ]
+        : []
+
+var collide = (e1, e2) =>
+    e1.position[0] < (e2.position[0] + e2.size[0])
+ && e1.position[1] < (e2.position[1] + e2.size[1])
+ && e2.position[0] < (e1.position[0] + e1.size[0])
+ && e2.position[1] < (e1.position[1] + e1.size[1])
+
+var resolve = (pair) => {}
+
+window.broadphase = broadphase
+
+var check = (enty, entities) => {
+
 }

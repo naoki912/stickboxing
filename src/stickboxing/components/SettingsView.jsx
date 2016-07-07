@@ -1,7 +1,7 @@
-import * as React from "react"
-import * as battleViewStyles from "stickboxing/styles/BattleViewStyles"
-import * as styles from "stickboxing/styles/SettingsViewStyles"
-import { settings } from "stickboxing/test/data"
+import React from "react"
+import battleViewStyles from "stickboxing/styles/BattleViewStyles"
+import styles from "stickboxing/styles/SettingsViewStyles"
+import settings from "stickboxing/test/data"
 
 var onButtonMouseDown = (event) => {
     var button = event.currentTarget
@@ -46,14 +46,14 @@ var onButtonTouchStart = (event) => {
     }
 }
 
-var Button = (props) => 
+var Button = (props) =>
     <div
       {...props}
       className={battleViewStyles.button}
       onMouseDown={onButtonMouseDown}
       onTouchStart={onButtonTouchStart}/>
 
-export var SettingsView = (props) =>
+export default (props) =>
     <div className={styles.settingsView}>
       <h1 className={styles.title}>
         Settings

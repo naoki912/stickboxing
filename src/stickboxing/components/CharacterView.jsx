@@ -25,7 +25,7 @@ var beltList = [
 ]
 var money = 100
 
-export var CharacterView = (props) =>
+export default (props) =>
     <div className={styles.character}>
         <div className={styles.title}>
             Character {"　　　　　　　コイン"}{money }

@@ -5,7 +5,7 @@
     -ms-user-select: none;
 }
 
-.battleView {
+.BattleView {
     position: relative;
     width: 560px;
     height: 315px;
@@ -13,19 +13,20 @@
     background-size: auto 100%;
 }
 
-.info {
+.Info {
     z-index: 1;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    position: relative;
+    position: absolute;
+    top: 8px;
     width: 100%;
     margin: 0 auto;
     text-align: center;
 }
 
-.time {
+.Time {
     width: 64px;
     color: white;
     font-size: 28px;
@@ -34,7 +35,7 @@
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.6);
 }
 
-.vitalityGaugeContainer {
+.VitalityGaugeContainer {
     display: flex;
     align-items: center;
     justify-content: flex-end;
@@ -46,16 +47,16 @@
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-.vitalityGaugeContainer1 {
-    composes: vitalityGaugeContainer;
+.VitalityGaugeContainer1 {
+    composes: VitalityGaugeContainer;
 }
 
-.vitalityGaugeContainer2 {
-    composes: vitalityGaugeContainer;
+.VitalityGaugeContainer2 {
+    composes: VitalityGaugeContainer;
     transform: rotateZ(180deg)
 }
 
-.vitalityGaugeView {
+.VitalityGaugeView {
     position: relative;
     width: 100%;
     height: 8px;
@@ -64,22 +65,22 @@
     transition: all 500ms ease-out;
 }
 
-.vitalityGaugeView2 {
-    composes: vitalityGaugeView;
+.VitalityGaugeView2 {
+    composes: VitalityGaugeView;
     background: linear-gradient(90deg, #ff2, #f92);
 }
 
-.vitalityGaugeView3 {
-    composes: vitalityGaugeView;
+.VitalityGaugeView3 {
+    composes: VitalityGaugeView;
     background: linear-gradient(90deg, #f92, #f22);
 }
 
-.vitalityGaugeView4 {
-    composes: vitalityGaugeView;
+.VitalityGaugeView4 {
+    composes: VitalityGaugeView;
     background: linear-gradient(90deg, #f22, #f00);
 }
 
-.vitalityGaugeView::after {
+.VitalityGaugeView::after {
     position: absolute;
     top: 1px;
     left: 0;
@@ -89,7 +90,7 @@
     content: "";
 }
 
-.button {
+.Button {
     z-index: 1;
     position: absolute;
     width: 48px;
@@ -102,27 +103,30 @@
     text-align: center;
 }
 
-.lightPunchButton {
-    composes: button;
+.LightPunchButton {
+    composes: Button;
     background: linear-gradient(#fb0, #950);
+    background-color: #fb0;
 }
 
-.heavyPunchButton {
-    composes: button;
+.HeavyPunchButton {
+    composes: Button;
     background: linear-gradient(#f70, #910);
+    background-color: #f70;
 }
 
-.guardButton {
-    composes: button;
+.GuardButton {
+    composes: Button;
     background: linear-gradient(#08f, #029);
+    background-color: #08f;
 }
 
-.directionalPad {
+.DirectionalPad {
     position: absolute;
 }
 
-.arrowButton {
-    composes: button;
+.ArrowButton {
+    composes: Button;
     position: absolute;
     width: 32px;
     height: 32px;
@@ -132,41 +136,39 @@
     line-height: 32px;
 }
 
-.upArrowButton {
-    composes: arrowButton;
+.UpArrowButton {
+    composes: ArrowButton;
     left: 32px;
     top: 0;
 }
 
-.rightArrowButton {
-    composes: arrowButton;
+.RightArrowButton {
+    composes: ArrowButton;
     left: 64px;
     top: 32px;
 }
 
-.downArrowButton {
-    composes: arrowButton;
+.DownArrowButton {
+    composes: ArrowButton;
     left: 32px;
     top: 64px;
 }
 
-.leftArrowButton {
-    composes: arrowButton;
+.LeftArrowButton {
+    composes: ArrowButton;
     left: 0;
     top: 32px;
 }
 
-.field {
+.Field {
     position: absolute;
     z-index: 0;
     left: 0;
-    bottom: 50px;
+    bottom: 8px;
 }
 
-.playerView {
+.PlayerView {
     position: absolute;
     background-repeat: no-repeat;
     background-size: auto 100%;
 }
-
-/*test */
