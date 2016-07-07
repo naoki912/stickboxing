@@ -31,11 +31,14 @@ export var CharacterView = (props) =>
             Character {"　　　　　　　コイン"}{money }
         </div>
         <img src="/images/player.png" width="192" height="192" className={styles.cyara}></img>
+        <form name="selbox">
         <select size = "3" className={styles.list} name="itemlist">
             {globeList.map((globe) => <option value={globe.name}>{globe.name}</option>)}
             {pantsList.map((pants) => <option value={pants.name}>{pants.name}</option>)}
             {beltList.map((belt) => <option value={belt.name}>{belt.name}</option>)}
         </select>
-        <button className={styles.button} name="btn">
-       </button>
+        </form>
+        <ButtonView className={styles.button} name="btn" >
+        {"Pant1"}オンクリックイベント
+       </ButtonView>
     </div>
