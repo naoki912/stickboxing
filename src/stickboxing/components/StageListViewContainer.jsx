@@ -1,5 +1,5 @@
 import React from "react"
-import CharacterView from "stickboxing/components/CharacterView"
+import StageListView from "stickboxing/components/StageListView"
 
 export default class extends React.Component {
     constructor(props) {
@@ -7,6 +7,6 @@ export default class extends React.Component {
     }
 
     render() {
-        return <CharacterView />
+        return <StageListView />
     }
 }
