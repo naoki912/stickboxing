@@ -39,6 +39,7 @@ export var CharacterView = (props) =>
         </select>
         </form>
         <ButtonView className={styles.button} name="btn" >
-        {"Pant1"}オンクリックイベント
+        ffff
        </ButtonView>
+       
     </div>
