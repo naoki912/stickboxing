@@ -1,7 +1,7 @@
-import * as React from "react"
-import { StageView } from "stickboxing/components/StageView"
-import * as styles from "stickboxing/styles/StageListViewStyles"
-import { ButtonView } from "stickboxing/components/ButtonView"
+import React from "react"
+import StageView from "stickboxing/components/StageView"
+import styles from "stickboxing/styles/StageListViewStyles"
+import ButtonView from "stickboxing/components/ButtonView"
 
 var selectStageID = 4
 

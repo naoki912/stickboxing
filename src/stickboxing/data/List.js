@@ -33,13 +33,14 @@ impliment(Enum, List, {
     map: (xs, f) => foldr(xs, [], (x, a) => [f(x), ...a])
     ,
     reduce: (xs, v, f) => {
-        for (var x of list)
+        for (var x of list) {
             var result = f(x, acc)
             acc = result.acc
             if (result.done)
                 break
             else
                 continue
+        }
 
         return acc
     },
