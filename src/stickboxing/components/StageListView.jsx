@@ -24,9 +24,8 @@ export var StageListView = (props) =>
       <ul className={styles.stageLine}> 
       {test_data.map(
           (stage) =>
-              <li key={stage.id} ><ButtonView className={styles.stageChoice} >
+              <li key={stage.id} >
                 <StageView onTouchStart={() => props.onStageSelecteListener(stage)}  stage={stage} />
-                </ButtonView>
               </li>
       )}
       </ul>
