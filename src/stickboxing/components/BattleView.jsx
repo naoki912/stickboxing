@@ -21,7 +21,7 @@ export default ({
 }) =>
     <div className={styles.BattleView}
       style={{
-          "backgroundImage": "url(" + stage.image + ")"
+          backgroundImage: "url(" + stage.image + ")"
       }}>
       <div className={styles.Info}>
         <div className={styles.VitalityGaugeContainer1}>

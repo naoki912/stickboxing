@@ -9,7 +9,7 @@ export default () =>
           Stick Boxing
         </h1>
         <ul>
-          <li><Link to="/stage_list" className={styles.button}>
+          <li><Link to="/stages" className={styles.button}>
             PLAY
           </Link></li>
           <li><Link to="/character" className={styles.button}>

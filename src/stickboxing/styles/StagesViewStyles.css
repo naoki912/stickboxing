@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "Audiowide";
+    src: url(/fonts/Audiowide/Audiowide-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Squada One";
+    src: url(/fonts/Squada_One/SquadaOne-Regular.ttf);
+}
+
+html, body {
+    min-width: 100%;
+    min-height: 100%;
+}
+
+.StagesView {
+    width: 560px;
+    height: 315px;
+    margin: 0 auto;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.Title {
+    padding: 16px 32px;
+    color: white;
+    font-family: "Squada One";
+    font-size: 40px;
+    text-align: center;
+}
+
+.selectButton {
+    height: 40px;
+    margin: 0 auto;
+    margin-top: 10px;
+    border-radius: 10px;
+    background: linear-gradient(#f70, #910);
+    background-color: #f70;
+    color: white;
+    font-size: 20px;
+}
+
+.StageList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 8px;
+}
+
+.StageView {
+    width: 56px;
+    height: 136px;
+    margin: 2px;
+    border: 1px solid white;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.SelectedStageView {
+    composes: StageView;
+    border-color: #28f;
+}
+
+.StageName {
+    padding: 2px;
+    color:white;
+    font-family: "Audiowide";
+    font-size: 20px;
+}
