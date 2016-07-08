@@ -38,6 +38,8 @@ html, body {
     background-color: #f70;
     color: white;
     font-size: 20px;
+    display: block;
+    float: center;
 }
 
 .StageList {
@@ -67,4 +69,5 @@ html, body {
     color:white;
     font-family: "Audiowide";
     font-size: 20px;
+    text-align: center;
 }
