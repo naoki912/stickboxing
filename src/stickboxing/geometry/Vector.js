@@ -1,4 +1,4 @@
-import {protocol} from "stickboxing/core"
+import {protocol} from "base"
 
 export var Vector = protocol({
     dimention: undefined,

@@ -1,4 +1,4 @@
-import {impliment, struct, raise} from "stickboxing/core"
+import {impliment, struct, raise} from "base"
 import Vector from "stickboxing/geometry/Vector"
 
 export var Vector3 = struct({
@@ -15,7 +15,7 @@ impliment(Vector, Vector3, {
         dimention == 0 ? vector[0]
       : dimention == 1 ? vector[1]
       : dimention == 2 ? vector[2]
-      : raise(RangeError),
+      : undefined,
     add: (v1, v2) => Vector3([
         v1[0] + v2[0],
         v1[1] + v2[1],

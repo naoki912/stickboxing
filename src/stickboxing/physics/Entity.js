@@ -1,4 +1,4 @@
-import {struct} from "stickboxing/core"
+import {struct} from "base"
 import Vector2 from "stickboxing/geometry/Vector2"
 
 export var Entity = struct({

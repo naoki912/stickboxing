@@ -2,10 +2,11 @@ export var impliment = (Protocol, Struct, methods) => {
     var implMethods = {}
 
     for (var name in Protocol)
-         implMethods[name] = methods[name] instanceof Function ? methods[name]
-                           : Protocol[name] instanceof Function ? Protocol[name]
-                           : raise(Error, "No explicit implementation for " + name)
-    
+        implMethods[name] = 
+            methods[name] instanceof Function  ? methods[name]
+          : Protocol[name] instanceof Function ? Protocol[name]
+          :                                      raise("No explicit implementation for " + name)
+
     Struct.protocols = Struct.protocols || new WeakMap()
     Struct.protocols.set(Protocol, implMethods)
 }

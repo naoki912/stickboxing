@@ -1,6 +1,10 @@
+import {Enum, List, Range} from "base"
 import React from "react"
 import styles from "stickboxing/styles/StagesViewStyles"
 import ButtonView from "stickboxing/components/ButtonView"
+import {Link} from "react-router"
+
+var {zipWith} = Enum
 
 export default ({
     onIndexChanged,
@@ -28,9 +32,15 @@ export default ({
       <div className={styles.StageName}>
         {stages[selectedIndex].name}
       </div>
-      <ButtonView className={styles.selectButton}>
+      <Link className={styles.selectButton}
+        to={{
+            pathname: "/battle",
+            query: {
+                ["stage_id"]: stages[selectedIndex].id
+            }
+        }}>
         Fight
-      </ButtonView>
+      </Link>
     </div>
 
 export var StageView = (props) => 

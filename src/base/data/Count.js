@@ -1,5 +1,5 @@
-import {struct, impliment} from "stickboxing/core"
-import {Enum} from "stickboxing/data/Enum"
+import {struct, impliment} from "base/Core"
+import {Enum} from "base/data/Enum"
 
 var Count = struct({
     first: Number

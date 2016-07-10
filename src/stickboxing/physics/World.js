@@ -1,5 +1,4 @@
-import Enum from "stickboxing/data/Enum"
-import List from "stickboxing/data/List"
+import {Enum, update} from "base"
 import Vector from "stickboxing/geometry/Vector"
 
 var {map, filter} = Enum
@@ -11,7 +10,7 @@ export var updateEntities = (world, entities, deltaTime) => {
     var entities2 = map(entities, (entity) => {
         var velocity = add(entity.velocity, gravity)
 
-        return entity({
+        return update(entity, {
             position: add(entity.position, multiply(velocity, world.scale * deltaTime)),
             velocity: velocity
         })
@@ -29,11 +28,11 @@ export var updateEntities = (world, entities, deltaTime) => {
         }
     })
 
-    return map(entities2, (entity) => entity({
-        position: entity.position({
+    return map(entities2, (entity) => update(entity, {
+        position: update(entity.position, {
             1: Math.max(entity.position[1], 0)
         }),
-        velocity: entity.velocity([
+        velocity: update(entity.velocity, [
             entity.position[0] > 0 ? entity.velocity[0] : 0,
             entity.position[1] > 0 ? entity.velocity[1] : 0
         ])
