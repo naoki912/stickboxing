@@ -1,0 +1,28 @@
+<HTML>
+<HEAD>
+<link rel="stylesheet" type="text/css" href="character.css">
+<script src="character.js"></script>
+</HEAD>
+<BODY>
+    <script>listSet();</script>
+    <div id="character">
+        <div id="title">
+            <div id="subject">
+                Character
+            </div>
+            <div id="date">
+                コイン
+                <script>title(100);</script>
+            </div>
+        </div>
+        <img id="player" src="/images/player.png"></img>
+        <form name="selbox">
+        <select id="list" size="3" name="itemlist" onchange="changeIMG()">装備選択
+        </select>
+        </form>
+        <script>list();</script>
+        <img id="itemIMG" src="/images/globe1.jpg"></img>
+        <input class="button" type="button" value="" onclick="">装備変更　visibleで表示
+    </div>
+</BODY>
+</HTML>
