@@ -16,7 +16,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
-   sodipodi:docname="stage0.svg">
+   sodipodi:docname="stage1.svg">
   <defs
      id="defs4">
     <linearGradient
@@ -59,18 +59,6 @@
          offset="1"
          id="stop5207" />
     </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient4887">
-      <stop
-         style="stop-color:#161616;stop-opacity:1"
-         offset="0"
-         id="stop4889" />
-      <stop
-         style="stop-color:#282832;stop-opacity:1"
-         offset="1"
-         id="stop4891" />
-    </linearGradient>
     <inkscape:perspective
        sodipodi:type="inkscape:persp3d"
        inkscape:vp_x="0 : 157.5 : 1"
@@ -78,15 +66,6 @@
        inkscape:vp_z="560.00001 : 157.5 : 1"
        inkscape:persp3d-origin="280 : 105 : 1"
        id="perspective4450" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient4887"
-       id="linearGradient4893"
-       x1="279.81226"
-       y1="738.20477"
-       x2="280.82242"
-       y2="1053.3723"
-       gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient5203"
@@ -135,9 +114,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8284271"
-     inkscape:cx="219.52982"
-     inkscape:cy="51.416969"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="211.27611"
+     inkscape:cy="111.64346"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -157,7 +136,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -167,7 +146,7 @@
      id="layer1"
      transform="translate(0,-737.36219)">
     <rect
-       style="fill:url(#linearGradient4893);fill-opacity:1"
+       style="fill:#6c535d;fill-opacity:1"
        id="rect4432"
        width="560"
        height="315"
@@ -188,7 +167,7 @@
        x="-0.50509596"
        y="981.36218" />
     <rect
-       style="fill:#0782ff;fill-opacity:1;opacity:1"
+       style="fill:#aa0000;fill-opacity:1;opacity:1"
        id="rect4430"
        width="561.64484"
        height="36.365437"
@@ -224,7 +203,7 @@
          height="112.90862"
          width="57.456863"
          id="rect4895"
-         style="opacity:1;fill:#0047b0;fill-opacity:1;stroke:none" />
+         style="opacity:1;fill:#00d4aa;fill-opacity:1;stroke:none" />
       <rect
          ry="2.0250936"
          y="904.62451"
@@ -232,13 +211,13 @@
          height="112.59521"
          width="6.060915"
          id="rect5297"
-         style="opacity:1;fill:#005ecd;fill-opacity:1;stroke:none;stroke-opacity:1" />
+         style="opacity:1;fill:#00aa88;fill-opacity:1;stroke:none;stroke-opacity:1" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="path5293"
          d="m -0.34473359,909.47333 51.30660459,-0.002 4.549283,-4.83257 -55.35440813,0.40502 z"
-         style="fill:#0060ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.05805624px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="fill:#00ffcc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1.05805624px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
     <g
        id="g5331"
@@ -250,13 +229,13 @@
          height="190.35667"
          width="66.285713"
          id="rect4899"
-         style="opacity:1;fill:#c92c39;fill-opacity:1;stroke:none" />
+         style="opacity:1;fill:#0000ff;fill-opacity:1;stroke:none" />
       <path
          sodipodi:nodetypes="ccccc"
          inkscape:connector-curvature="0"
          id="path5327"
          d="m 493.57144,828.66388 67.85713,0.34165 -0.71428,-10.21477 -62.14286,0.78575 z"
-         style="fill:#ff435e;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+         style="fill:#5555ff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     </g>
   </g>
 </svg>

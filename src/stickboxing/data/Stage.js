@@ -1,4 +1,4 @@
-import {struct} from "stickboxing/core"
+import {struct} from "base"
 
 export var Stage = struct({
     id: Number,

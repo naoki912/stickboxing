@@ -19,6 +19,7 @@ html, body {
     margin: 0 auto;
     background-size: auto 100%;
     background-repeat: no-repeat;
+    text-align: center;
 }
 
 .Title {
@@ -38,6 +39,8 @@ html, body {
     background-color: #f70;
     color: white;
     font-size: 20px;
+    text-align: center;
+    font-family:"Audiowide";
 }
 
 .StageList {
@@ -67,4 +70,5 @@ html, body {
     color:white;
     font-family: "Audiowide";
     font-size: 20px;
+    text-align: center;
 }
