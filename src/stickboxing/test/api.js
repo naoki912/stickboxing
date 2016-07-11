@@ -9,10 +9,10 @@ export var api = {
     },
     "/stages": [
         {id: 0, name: "Stage 1", image: "/images/stage0.svg"},
-        {id: 1, name: "Stage 2", image: "/images/stage0.jpg"},
-        {id: 2, name: "Stage 3", image: "/images/stage1.svg"},
-        {id: 3, name: "Stage 4", image: "/images/stage2.svg"},
-        {id: 4, name: "Stage 5", image: "/images/stage3.svg"}
+        {id: 1, name: "Stage 2", image: "/images/stage1.svg"},
+        {id: 2, name: "Stage 3", image: "/images/stage2.svg"},
+        {id: 3, name: "Stage 4", image: "/images/stage3.svg"},
+        {id: 4, name: "Stage 5", image: "/images/stage4.svg"}
     ],
     "/users": [
         {id: 0, name: "Takeshi", image: "/images/player0.gif"},
