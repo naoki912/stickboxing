@@ -65,16 +65,16 @@ var Joystick = ({joystick: {hidden, lever, position, size}}) =>
    <div className={styles.Joystick}
      style={{
           visibility: hidden ? "hidden" : "visible",
-          left:   position[0] + "px",
-          bottom: position[1] + "px",
+          left:   position[0] - size[0] / 2 + "px",
+          bottom: position[1] - size[1] / 2 + "px",
           width:  size[0] + "px",
           height: size[1] + "px",
           borderRadius: Math.min(size[0], size[1]) / 2 + "px"
      }}>
      <div className={styles.Lever}
        style={{
-          left:   lever.position[0] + "px",
-          bottom: lever.position[1] + "px",
+          left:   lever.position[0] - lever.size[0] / 2 + "px",
+          bottom: lever.position[1] - lever.size[1] / 2 + "px",
           width:  lever.size[0] + "px",
           height: lever.size[1] + "px",
           borderRadius: Math.min(lever.size[0], lever.size[1]) / 2 + "px"

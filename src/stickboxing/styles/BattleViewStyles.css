@@ -114,9 +114,7 @@
 
 .Lever {
     position: absolute;
-    width: 50%;
-    height: 50%;
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(48, 48, 48, 0.8);
 }
 
 .Button {

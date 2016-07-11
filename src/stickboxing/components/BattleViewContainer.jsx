@@ -29,7 +29,7 @@ export default class extends React.Component {
                 position: Vector2([0, 0]),
                 size: Vector2([112, 112]),
                 lever: {
-                    position: Vector2([0, 0]),
+                    position: extents(Vector2([112, 112])),
                     size: Vector2([64, 64])
                 }
             },
@@ -81,32 +81,26 @@ export default class extends React.Component {
             event.preventDefault()
 
             var {key} = event
-            var {players} = this.state
-            var player = players[0]
+            var {joystick} = this.state
 
-            player.action[
-                key == "ArrowUp"    ? "Jump"
-              : key == "ArrowRight" ? "MoveRight"
-              : key == "ArrowDown"  ? "None"
-              : key == "ArrowLeft"  ? "MoveLeft"
-              : "Other"
-            ] = true
+            key == "ArrowUp"    ? this.state.joystick = moveY(joystick, joystick.size[1] * 2)
+          : key == "ArrowRight" ? this.state.joystick = moveX(joystick, joystick.size[0] * 2)
+          : key == "ArrowDown"  ? "None"
+          : key == "ArrowLeft"  ? this.state.joystick = moveX(joystick, -joystick.size[0] * 2)
+          :                       "Other"
         }
 
         window.onkeyup = (event) => {
             event.preventDefault()
 
             var {key} = event
-            var {players} = this.state
-            var player = players[0]
+            var {joystick} = this.state
 
-            player.action[
-                key == "ArrowUp"    ? "Jump"
-              : key == "ArrowRight" ? "MoveRight"
-              : key == "ArrowDown"  ? "None"
-              : key == "ArrowLeft"  ? "MoveLeft"
-              : "Other"
-            ] = false
+            key == "ArrowUp"    ? this.state.joystick = moveCenterY(joystick)
+          : key == "ArrowRight" ? this.state.joystick = moveCenterX(joystick)
+          : key == "ArrowDown"  ? "None"
+          : key == "ArrowLeft"  ? this.state.joystick = moveCenterX(joystick)
+          :                       "Other"
         }
 
         var secondsIntervelID = setInterval(() => {
@@ -122,31 +116,27 @@ export default class extends React.Component {
 
             var {joystick, lastTime, players, world} = this.state
 
-            if (joystick.hidden == false) {
-                var {lever} = joystick
+            var {lever} = joystick
 
-                var distance = subtract(
-                    add(lever.position, multiply(lever.size, 0.5)),
-                    multiply(joystick.size, 0.5)
-                )
+            var distance = subtract(lever.position, extents(joystick.size))
 
-                players[0] = update(players[0], {
-                    position: update(players[0].position, {
-                        0: players[0].position[0] + Math.max(Math.min(distance[0] / 20, 4), -4)
-                    })
-                })
+            var player = players[0]
 
-                if (distance[1] * 2 > joystick.size[1])
-                    players[0] = jump(players[0])
-            }
+            players[0] = update(player, {
+                position: update(player.position, {
+                    0: player.position[0] + Math.max(Math.min(distance[0] / 20, 4), -4)
+                }),
+                rotation: update(player.rotation, [
+                    ,
+                    distance[0] > lever.size[0] / 2  ? 0
+                  : distance[0] < -lever.size[0] / 2 ? 180
+                  :                                    player.rotation[1]
+                ])
+            })
 
-/*            var {player: {action}} = players[0]
+            if (distance[1] * 2 > joystick.size[1])
+                players[0] = jump(players[0])
 
-            if (action["MoveRight"])
-                players[0] = moveRight(players[0])
-            if (action["MoveLeft"])
-                players[0] = moveLeft(players[0])
-*/
             var entities = World.updateEntities(
                 world,
                 [
@@ -176,61 +166,72 @@ export default class extends React.Component {
 
                 var touch = event.targetTouches[0]
                 var rect = event.currentTarget.getBoundingClientRect()
-                var {joystick} = this.state
+                var position = Vector2([
+                    (touch.clientX - rect.left),
+                    rect.height - (touch.clientY - rect.top)
+                ])
 
-                var position = subtract(Vector2([
-                    (touch.pageX - rect.left),
-                    rect.height - (touch.pageY - rect.top)
-                ]), multiply(joystick.size, 0.5))
+                var {joystick} = this.state
 
                 this.state.joystick = update(joystick, {
                     hidden: false,
                     position: position,
                     lever: update(joystick.lever, {
-                        position: subtract(
-                            multiply(joystick.size, 0.5),
-                            multiply(joystick.lever.size, 0.5)
-                        )
+                        position: extents(joystick.size)
                     })
                 })
             }}
             onFieldTouchMove={(event) => {
                 event.preventDefault()
 
-                var {joystick} = this.state
                 var touch = event.targetTouches[0]
                 var rect = event.currentTarget.getBoundingClientRect()
-                var {size} = joystick
+                var position = Vector2([
+                    (touch.clientX - rect.left),
+                    rect.height - (touch.clientY - rect.top)
+                ])
 
-                var position = subtract(Vector2([
-                    (touch.pageX - rect.left),
-                    rect.height - (touch.pageY - rect.top)
-                ]), multiply(joystick.lever.size, 0.5))
+                var {joystick} = this.state
 
                 this.state.joystick = update(joystick, {
                     lever: update(joystick.lever, {
-                        position: subtract(position, joystick.position)
+                        position: add(extents(joystick.size), subtract(position, joystick.position))
                     })
                 })
             }}
             onFieldTouchEnd={(event) => {
                 event.preventDefault()
-    
+
                 var {joystick} = this.state
 
                 this.state.joystick = update(joystick, {
                     hidden: true,
                     lever: update(joystick.lever, {
-                        position: subtract(
-                            multiply(joystick.size, 0.5),
-                            multiply(joystick.lever.size, 0.5)
-                        )
+                        position: extents(joystick.size)
                     })
                 })
             }}
         />
     }
 }
+
+var extents = (vector) => multiply(vector, 0.5)
+
+var move = (joystick, vector) => update(joystick, {
+    lever: update(joystick.lever, {
+        position: update(joystick.lever.position, vector)
+    })
+})
+
+var moveX = (joystick, x) => move(joystick, update(joystick.lever.position, [x]))
+
+var moveY = (joystick, y) => move(joystick, update(joystick.lever.position, [, y]))
+
+var moveCenter = (joystick) => move(joystick, extents(joystick.size))
+
+var moveCenterX = (joystick) => moveX(joystick, extents(joystick.size)[0])
+
+var moveCenterY = (joystick) => moveY(joystick, extents(joystick.size)[1])
 
 var jump = (player) => player.position[1] > 0 ? player : update(player, {
     velocity: add(player.velocity, Vector2([0, 5]))
