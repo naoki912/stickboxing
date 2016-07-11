@@ -1,0 +1,55 @@
+#character {
+    padding-top: 10px;
+    background: blue; 
+    position: relative;
+    width: 560px;
+    height: 315px;
+}
+#title {
+    padding: 0px 18px;
+    color: white;
+    font-family: "Audiowide";
+    font-size: 32px;
+    background: black;
+}
+#subject {  
+    float: left;
+    text-align: left;
+}
+#date {
+    text-align: right;
+}
+#player {
+    float: left;
+    padding-top: 10px;
+    padding-left: 10px;
+    width: 192;
+    height: 192;
+}
+#itemIMG {
+    padding-top: 0px;
+    padding-left: 20px;
+    width: 128;
+    height: 128;
+}
+#list{
+    overflow: scroll; 
+    width: 150px;
+    padding-bottom: 0px; 
+    height: 282px;
+    background-color: red;
+    float: right;
+    top:0px;
+    font-size: 30px;
+}
+.button{
+    position: absolute;
+    visibility: hidden;
+    left: 180px;
+    top: 250px;
+    height: 40px;
+    font-size: 20px;
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+    border-radius: 5px; 
+}
