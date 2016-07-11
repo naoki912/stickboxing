@@ -82,12 +82,13 @@ export default class extends React.Component {
 
             var {key} = event
             var {joystick} = this.state
-
-            key == "ArrowUp"    ? this.state.joystick = moveY(joystick, joystick.size[1] * 2)
-          : key == "ArrowRight" ? this.state.joystick = moveX(joystick, joystick.size[0] * 2)
-          : key == "ArrowDown"  ? "None"
-          : key == "ArrowLeft"  ? this.state.joystick = moveX(joystick, -joystick.size[0] * 2)
-          :                       "Other"
+        
+            this.state.joystick = 
+                key == "ArrowUp"    ? moveY(joystick, joystick.size[1] * 2)
+              : key == "ArrowRight" ? moveX(joystick, joystick.size[0] * 2)
+              : key == "ArrowDown"  ? moveY(joystick, -joystick.size[1] * 2)
+              : key == "ArrowLeft"  ? moveX(joystick, -joystick.size[0] * 2)
+              :                       joystick
         }
 
         window.onkeyup = (event) => {
@@ -96,11 +97,12 @@ export default class extends React.Component {
             var {key} = event
             var {joystick} = this.state
 
-            key == "ArrowUp"    ? this.state.joystick = moveCenterY(joystick)
-          : key == "ArrowRight" ? this.state.joystick = moveCenterX(joystick)
-          : key == "ArrowDown"  ? "None"
-          : key == "ArrowLeft"  ? this.state.joystick = moveCenterX(joystick)
-          :                       "Other"
+            this.state.joystick =
+                key == "ArrowUp"    ? moveCenterY(joystick)
+              : key == "ArrowRight" ? moveCenterX(joystick)
+              : key == "ArrowDown"  ? moveCenterY(joystick)
+              : key == "ArrowLeft"  ? moveCenterX(joystick)
+              :                       joystick
         }
 
         var secondsIntervelID = setInterval(() => {
