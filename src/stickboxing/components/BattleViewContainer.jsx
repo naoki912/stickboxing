@@ -40,7 +40,7 @@ export default class extends React.Component {
                     rotation: Vector3([0, 0, 0]),
                     position: Vector2([20, 0]),
                     velocity: Vector2([0, 0]),
-                    size: Vector2([120, 190]),
+                    size: Vector2([120, 200]),
                     type: 1,
                     vitality: 100,
                     maxVitality: 100,
@@ -52,7 +52,7 @@ export default class extends React.Component {
                     rotation: Vector3([0, 180, 0]),
                     position: Vector2([430, 0]),
                     velocity: Vector2([0, 0]),
-                    size: Vector2([120, 190]),
+                    size: Vector2([120, 200]),
                     type: 1,
                     vitality: 100,
                     maxVitality: 100,
@@ -84,10 +84,10 @@ export default class extends React.Component {
             var {joystick} = this.state
         
             this.state.joystick = 
-                key == "ArrowUp"    ? moveY(joystick, joystick.size[1] * 2)
-              : key == "ArrowRight" ? moveX(joystick, joystick.size[0] * 2)
-              : key == "ArrowDown"  ? moveY(joystick, -joystick.size[1] * 2)
-              : key == "ArrowLeft"  ? moveX(joystick, -joystick.size[0] * 2)
+                key == "ArrowUp"    ? moveToY(joystick, joystick.size[1] * 2)
+              : key == "ArrowRight" ? moveToX(joystick, joystick.size[0] * 2)
+              : key == "ArrowDown"  ? moveToY(joystick, -joystick.size[1] * 2)
+              : key == "ArrowLeft"  ? moveToX(joystick, -joystick.size[0] * 2)
               :                       joystick
         }
 
@@ -98,10 +98,10 @@ export default class extends React.Component {
             var {joystick} = this.state
 
             this.state.joystick =
-                key == "ArrowUp"    ? moveCenterY(joystick)
-              : key == "ArrowRight" ? moveCenterX(joystick)
-              : key == "ArrowDown"  ? moveCenterY(joystick)
-              : key == "ArrowLeft"  ? moveCenterX(joystick)
+                key == "ArrowUp"    ? moveToCenterY(joystick)
+              : key == "ArrowRight" ? moveToCenterX(joystick)
+              : key == "ArrowDown"  ? moveToCenterY(joystick)
+              : key == "ArrowLeft"  ? moveToCenterX(joystick)
               :                       joystick
         }
 
@@ -177,10 +177,8 @@ export default class extends React.Component {
 
                 this.state.joystick = update(joystick, {
                     hidden: false,
-                    position: position,
-                    lever: update(joystick.lever, {
-                        position: extents(joystick.size)
-                    })
+                    lever: update(joystick.lever, {position: extents(joystick.size)}),
+                    position: position
                 })
             }}
             onFieldTouchMove={(event) => {
@@ -195,11 +193,10 @@ export default class extends React.Component {
 
                 var {joystick} = this.state
 
-                this.state.joystick = update(joystick, {
-                    lever: update(joystick.lever, {
-                        position: add(extents(joystick.size), subtract(position, joystick.position))
-                    })
-                })
+                this.state.joystick = moveTo(
+                    joystick,
+                    add(extents(joystick.size), subtract(position, joystick.position))
+                )
             }}
             onFieldTouchEnd={(event) => {
                 event.preventDefault()
@@ -208,9 +205,7 @@ export default class extends React.Component {
 
                 this.state.joystick = update(joystick, {
                     hidden: true,
-                    lever: update(joystick.lever, {
-                        position: extents(joystick.size)
-                    })
+                    lever: update(joystick.lever, {position: extents(joystick.size)})
                 })
             }}
         />
@@ -219,21 +214,21 @@ export default class extends React.Component {
 
 var extents = (vector) => multiply(vector, 0.5)
 
-var move = (joystick, vector) => update(joystick, {
+var moveTo = (joystick, vector) => update(joystick, {
     lever: update(joystick.lever, {
-        position: update(joystick.lever.position, vector)
+        position: vector
     })
 })
 
-var moveX = (joystick, x) => move(joystick, update(joystick.lever.position, [x]))
+var moveToX = (joystick, x) => moveTo(joystick, update(joystick.lever.position, [x]))
 
-var moveY = (joystick, y) => move(joystick, update(joystick.lever.position, [, y]))
+var moveToY = (joystick, y) => moveTo(joystick, update(joystick.lever.position, [, y]))
 
-var moveCenter = (joystick) => move(joystick, extents(joystick.size))
+var moveToCenter = (joystick) => moveTo(joystick, extents(joystick.size))
 
-var moveCenterX = (joystick) => moveX(joystick, extents(joystick.size)[0])
+var moveToCenterX = (joystick) => moveToX(joystick, extents(joystick.size)[0])
 
-var moveCenterY = (joystick) => moveY(joystick, extents(joystick.size)[1])
+var moveToCenterY = (joystick) => moveToY(joystick, extents(joystick.size)[1])
 
 var jump = (player) => player.position[1] > 0 ? player : update(player, {
     velocity: add(player.velocity, Vector2([0, 5]))

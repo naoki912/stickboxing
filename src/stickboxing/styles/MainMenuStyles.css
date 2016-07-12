@@ -19,10 +19,11 @@ ul {
 
 .mainMenu {
     padding: 16px 0px;
-    background-image: url(/images/stage1.jpg);
     position: relative;
     width: 560px;
     height: 315px;
+    margin: 0 auto;
+    background-color: #334;
 }
 
 .container {
@@ -40,7 +41,6 @@ ul {
 
 .button {
     display: block;
-    min-width: 1000px;
     margin: 0 0 8px 0;
     padding: 0 32px;
     color: white;
