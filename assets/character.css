@@ -42,7 +42,7 @@
     top:0px;
     font-size: 30px;
 }
-.button{
+#itemButton{
     position: absolute;
     visibility: hidden;
     left: 180px;
