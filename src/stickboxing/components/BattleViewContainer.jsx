@@ -38,7 +38,7 @@ export default class extends React.Component {
                     image: me.image,
                     name: me.name,
                     rotation: Vector3([0, 0, 0]),
-                    position: Vector2([20, 0]),
+                    position: Vector2([40, 0]),
                     velocity: Vector2([0, 0]),
                     size: Vector2([120, 200]),
                     type: 1,
@@ -50,7 +50,7 @@ export default class extends React.Component {
                     image: opponent.image,
                     name: opponent.name,
                     rotation: Vector3([0, 180, 0]),
-                    position: Vector2([430, 0]),
+                    position: Vector2([410, 0]),
                     velocity: Vector2([0, 0]),
                     size: Vector2([120, 200]),
                     type: 1,
@@ -78,8 +78,6 @@ export default class extends React.Component {
 
     componentDidMount() {
         window.onkeydown = (event) => {
-            event.preventDefault()
-
             var {key} = event
             var {joystick} = this.state
         
@@ -92,10 +90,8 @@ export default class extends React.Component {
         }
 
         window.onkeyup = (event) => {
-            event.preventDefault()
-
             var {key} = event
-            var {joystick} = this.state
+            var {joystick, players} = this.state
 
             this.state.joystick =
                 key == "ArrowUp"    ? moveToCenterY(joystick)
@@ -103,6 +99,10 @@ export default class extends React.Component {
               : key == "ArrowDown"  ? moveToCenterY(joystick)
               : key == "ArrowLeft"  ? moveToCenterX(joystick)
               :                       joystick
+
+            this.state.players[0] = 
+                key == "A" ? update(players[0], {vitality: players[0].vitality * 0.7})
+              :              players[0]
         }
 
         var secondsIntervelID = setInterval(() => {

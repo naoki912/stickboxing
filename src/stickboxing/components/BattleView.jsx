@@ -5,6 +5,10 @@ import styles from "stickboxing/styles/BattleViewStyles"
 
 var {zipWith} = Enum
 
+var a = () => {
+
+}
+
 export default ({
     joystick,
     onDownArrowButtonPressed,
@@ -24,7 +28,8 @@ export default ({
 }) =>
     <div className={styles.BattleView}
       style={{
-          backgroundImage: "url(" + stage.image + ")"
+          backgroundImage: "url(" + stage.background + ")",
+          transform: "translate(0, -50%) scale(" + 1 + ", " + 1 + ") translate(0, 50%)"
       }}>
       <div className={styles.Field}
         onTouchStart={onFieldTouchStart}
@@ -59,6 +64,10 @@ export default ({
         onTouchStart={onGuardButtonPressed}>
         G
       </ButtonView>
+      <div className={styles.StageForeground}
+        style={{
+          backgroundImage: "url(" + stage.foreground + ")"
+        }}/>
     </div>
 
 var Joystick = ({joystick: {hidden, lever, position, size}}) => 
@@ -86,9 +95,9 @@ var VitalityGaugeView = ({player: {vitality, maxVitality}}) => {
     return (
         <div
           className={
-              percentage > 50 ? styles.VitalityGaugeView
-            : percentage > 20 ? styles.VitalityGaugeView2
-            : percentage > 10 ? styles.VitalityGaugeView3
+              percentage > 75 ? styles.VitalityGaugeView
+            : percentage > 50 ? styles.VitalityGaugeView2
+            : percentage > 25 ? styles.VitalityGaugeView3
             :                   styles.VitalityGaugeView4
           }
           style={{width: percentage + "%"}}/>

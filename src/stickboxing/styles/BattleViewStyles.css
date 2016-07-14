@@ -14,6 +14,12 @@
     background-size: auto 100%;
 }
 
+.StageForeground {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
 .Info {
     z-index: 1;
     display: flex;
@@ -45,7 +51,6 @@
     height: 14px;
     border-right: 1px solid white;
     border-left: 1px solid white;
-    border-radius: 2px;
     background-color: rgba(0, 0, 0, 0.2);
 }
 
@@ -55,41 +60,31 @@
 
 .VitalityGaugeContainer2 {
     composes: VitalityGaugeContainer;
-    transform: rotateZ(180deg)
+    transform: rotateZ(180deg) rotateX(180deg)
 }
 
 .VitalityGaugeView {
     position: relative;
     width: 100%;
     height: 8px;
-    background: linear-gradient(90deg, #4f6, #ff4);
+    background-color: #4f6;
     opacity: 0.9;
     transition: all 500ms ease-out;
 }
 
 .VitalityGaugeView2 {
     composes: VitalityGaugeView;
-    background: linear-gradient(90deg, #ff4, #f92);
+    background-color: #ff4;
 }
 
 .VitalityGaugeView3 {
     composes: VitalityGaugeView;
-    background: linear-gradient(90deg, #f92, #f22);
+    background-color: #f92;
 }
 
 .VitalityGaugeView4 {
     composes: VitalityGaugeView;
-    background: linear-gradient(90deg, #f22, #f00);
-}
-
-.VitalityGaugeView::after {
-    position: absolute;
-    top: 2px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background-color: rgba(0, 0, 0, 0.1);
-    content: "";
+    background-color: #f22;
 }
 
 .Field {

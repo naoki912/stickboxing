@@ -8,20 +8,20 @@ export var api = {
         }
     },
     "/stages": [
-        {id: 0, name: "Stage 1", image: "/images/stage0.svg"},
-        {id: 1, name: "Stage 2", image: "/images/stage1.svg"},
-        {id: 2, name: "Stage 3", image: "/images/stage2.svg"},
-        {id: 3, name: "Stage 4", image: "/images/stage3.svg"},
-        {id: 4, name: "Stage 5", image: "/images/stage4.svg"}
+        {id: 0, name: "Stage 1", background: "/images/stage0_bg.svg", foreground: "/images/stage0_fg.svg"},
+        {id: 1, name: "Stage 2", background: "/images/stage1.svg", foreground: null},
+        {id: 2, name: "Stage 3", background: "/images/stage2.svg", foreground: null},
+        {id: 3, name: "Stage 4", background: "/images/stage3.svg", foreground: null},
+        {id: 4, name: "Stage 5", background: "/images/stage4.svg", foreground: null}
     ],
     "/users": [
-        {id: 0, name: "Takeshi", image: "/images/player0.gif"},
-        {id: 1, name: "Suneo", image: "/images/player1.gif"}
+        {id: 0, name: "Takeshi", image: "/images/player0.svg"},
+        {id: 1, name: "Suneo", image: "/images/player0.gif"}
     ],
-    "/users/me": {id: 0, name: "Takeshi", image: "/images/player0.gif"},
+    "/users/me": {id: 0, name: "Takeshi", image: "/images/player0.svg"},
     "/npcs": [
-        {id: 0, name: "Doraemon", image: "/images/player2.gif"},
-        {id: 1, name: "Dorami", image: "/images/player3.gif"},
+        {id: 0, name: "Doraemon", image: "/images/player0.gif"},
+        {id: 1, name: "Dorami", image: "/images/player2.gif"},
     ]
 }
 
