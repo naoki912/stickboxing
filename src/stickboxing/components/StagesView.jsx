@@ -13,7 +13,7 @@ export default ({
 }) =>
     <div className={styles.StagesView}
         style={{
-            backgroundImage: "url(" + stages[selectedIndex].image + ")"
+            backgroundImage: "url(" + stages[selectedIndex].background + ")"
          }}>
       <div className={styles.Title}>
         STAGE SELECT
@@ -47,7 +47,7 @@ export var StageView = (props) =>
     <div {...props}
         className={styles.StageView + " " + props.className}
         style={{
-            backgroundImage: "url(" + props.stage.image + ")"
+            backgroundImage: "url(" + props.stage.background + ")"
         }}
     >
     </div>

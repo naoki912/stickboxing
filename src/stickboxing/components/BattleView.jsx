@@ -5,6 +5,10 @@ import styles from "stickboxing/styles/BattleViewStyles"
 
 var {zipWith} = Enum
 
+var a = () => {
+
+}
+
 export default ({
     joystick,
     onDownArrowButtonPressed,
@@ -24,7 +28,8 @@ export default ({
 }) =>
     <div className={styles.BattleView}
       style={{
-          backgroundImage: "url(" + stage.image + ")"
+          backgroundImage: "url(" + stage.background + ")",
+          transform: "translate(0, -50%) scale(" + 1 + ", " + 1 + ") translate(0, 50%)"
       }}>
       <div className={styles.Field}
         onTouchStart={onFieldTouchStart}
@@ -59,22 +64,26 @@ export default ({
         onTouchStart={onGuardButtonPressed}>
         G
       </ButtonView>
+      <div className={styles.StageForeground}
+        style={{
+          backgroundImage: "url(" + stage.foreground + ")"
+        }}/>
     </div>
 
 var Joystick = ({joystick: {hidden, lever, position, size}}) => 
    <div className={styles.Joystick}
      style={{
           visibility: hidden ? "hidden" : "visible",
-          left:   position[0] + "px",
-          bottom: position[1] + "px",
+          left:   position[0] - size[0] / 2 + "px",
+          bottom: position[1] - size[1] / 2 + "px",
           width:  size[0] + "px",
           height: size[1] + "px",
           borderRadius: Math.min(size[0], size[1]) / 2 + "px"
      }}>
      <div className={styles.Lever}
        style={{
-          left:   lever.position[0] + "px",
-          bottom: lever.position[1] + "px",
+          left:   lever.position[0] - lever.size[0] / 2 + "px",
+          bottom: lever.position[1] - lever.size[1] / 2 + "px",
           width:  lever.size[0] + "px",
           height: lever.size[1] + "px",
           borderRadius: Math.min(lever.size[0], lever.size[1]) / 2 + "px"
@@ -86,9 +95,9 @@ var VitalityGaugeView = ({player: {vitality, maxVitality}}) => {
     return (
         <div
           className={
-              percentage > 50 ? styles.VitalityGaugeView
-            : percentage > 20 ? styles.VitalityGaugeView2
-            : percentage > 10 ? styles.VitalityGaugeView3
+              percentage > 75 ? styles.VitalityGaugeView
+            : percentage > 50 ? styles.VitalityGaugeView2
+            : percentage > 25 ? styles.VitalityGaugeView3
             :                   styles.VitalityGaugeView4
           }
           style={{width: percentage + "%"}}/>

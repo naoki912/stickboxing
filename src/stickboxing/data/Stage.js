@@ -2,8 +2,9 @@ import {struct} from "base"
 
 export var Stage = struct({
     id: Number,
-    image: String,
-    name: String
+    name: String,
+    background: String,
+    foreground: String
 })
 
 export {Stage as default}
