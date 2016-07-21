@@ -1,5 +1,6 @@
-function title(money) {
-    document.write(money);
+var money = 100;
+function title() {
+    document.getElementById("date").innerHTML = "コイン" + money;
 }
 function list() {
     list=document.selbox.itemlist;
@@ -19,10 +20,12 @@ function list() {
         }
     }
 }
+var selectvalue;
 function changeIMG(obj) {
     var idx = obj.selectedIndex;
     var value = obj.options[idx].value;
     var text  = obj.options[idx].text;
+    selectvalue = value;
     if (value < 10) {
         item.src = "/images/" + text + ".jpg";
         for (var i = 0; hasGlobeIDList[i] != null; i++) {
@@ -39,7 +42,7 @@ function changeIMG(obj) {
         }
     }else if (value < 20) {
         item.src = "/images/" + text + ".jpg";
-        for (var i = 0; hasGlobeIDList[i] != null; i++) {
+        for (var i = 0; hasPantsIDList[i] != null; i++) {
             if (hasPantsIDList[i] == value-10) {
                 if (equip.pants == value-10 ) {
                     document.getElementById('itemButton').value = "装備中";
@@ -53,7 +56,7 @@ function changeIMG(obj) {
         }
     }else if (value < 30) {
         item.src = "/images/" + text + ".jpg";
-        for (var i = 0; hasGlobeIDList[i] != null; i++) {
+        for (var i = 0; hasBeltIDList[i] != null; i++) {
             if (hasBeltIDList[i] == value-20) {
                 if (equip.belt == value-20) {
                     document.getElementById('itemButton').value = "装備中";
@@ -67,33 +70,48 @@ function changeIMG(obj) {
         }
     }
     document.getElementById('itemButton').style.visibility = 'visible';
+    document.getElementById('itemButton').disabled = false;
 }
 function changeequip() {
-    if (!document.getElementById('itemButton').value.equals("装備中")) {
-        if (document.getElementById('itemButton').value.indexOf("購入")) {
-            if (value < 10){
-                if (globe[value].price <= money) {
-                    money -= globe[value].price;
-                    document.getElementById('itemButton').value = text + "を装備";
+    var btnname = document.getElementById('itemButton').value;
+    if (btnname != "装備中") {
+        if (btnname == "100で購入") {
+            if (selectvalue < 10){
+                if (globe[selectvalue].price <= money) {
+                    money -= globe[selectvalue].price;
+                    hasGlobeIDList[hasGlobeIDList.length] = selectvalue;
+                    document.getElementById('itemButton').value = globe[selectvalue].name + "を装備";
+                }else {
+                    document.getElementById('itemButton').value = "コインが足りません";
+                    document.getElementById('itemButton').disabled  = true;
                 }
-            }else if (value < 20) {
-                if (pants[value-10].price <= money) {
-                    money -= globe[value-10].price;
-                    document.getElementById('itemButton').value = text + "を装備";
+            }else if (selectvalue < 20) {
+                if (pants[selectvalue-10].price <= money) {
+                    money -= pants[selectvalue-10].price;
+                    hasPantsIDList[hasPantsIDList.length] = selectvalue-10;
+                    document.getElementById('itemButton').value = pants[selectvalue-10].name + "を装備";
+                }else {
+                    document.getElementById('itemButton').value = "コインが足りません";
+                    document.getElementById('itemButton').disabled  = true;
                 }
-            }else if (value < 30) {
-                if (belt[value-20].price <= money) {
-                    money -= globe[value-20].price;
-                    document.getElementById('itemButton').value = text + "を装備";
+            }else if (selectvalue < 30) {
+                if (belt[selectvalue-20].price <= money) {
+                    money -= belt[selectvalue-20].price;
+                    hasBeltIDList[hasBeltIDList.length] = selectvalue-20;
+                    document.getElementById('itemButton').value = belt[selectvalue-20].name + "を装備";
+                }else {
+                    document.getElementById('itemButton').value = "コインが足りません";
+                    document.getElementById('itemButton').disabled  = true;
                 }
             }
+            title();
         }else {
-            if (value < 10){
-                equip.globe = value;
-            }else if (value < 20) {
-                equip.pants = value;
-            }else if (value < 30) {
-                equip.belt = value;
+            if (selectvalue < 10){
+                equip.globe = selectvalue;
+            }else if (selectvalue < 20) {
+                equip.pants = selectvalue-10;
+            }else if (selectvalue < 30) {
+                equip.belt = selectvalue-20;
             }
             document.getElementById('itemButton').value = "装備中";
         }
