@@ -94,8 +94,8 @@ export var sweepAndPrune = (entities) => {
 }
 
 export var Collision = struct({
-    e1,
-    e2
+    e1: null,
+    e2: null
 })
 
 var collision = (e1, e2) =>

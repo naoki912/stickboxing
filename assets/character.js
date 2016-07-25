@@ -1,5 +1,6 @@
-function title(money) {
-    document.write(money);
+var money = 100;
+function title() {
+    document.getElementById("date").innerHTML = "コイン" + money;
 }
 function list() {
     list=document.selbox.itemlist;
@@ -19,8 +20,102 @@ function list() {
         }
     }
 }
-function changeIMG() {
-
+var selectvalue;
+function changeIMG(obj) {
+    var idx = obj.selectedIndex;
+    var value = obj.options[idx].value;
+    var text  = obj.options[idx].text;
+    selectvalue = value;
+    if (value < 10) {
+        item.src = "/images/" + text + ".jpg";
+        for (var i = 0; hasGlobeIDList[i] != null; i++) {
+            if (hasGlobeIDList[i] == value) {
+                if (equip.globe == value) {
+                    document.getElementById('itemButton').value = "装備中";
+                }else {
+                    document.getElementById('itemButton').value = text + "を装備";
+                }
+                break;
+            }else {
+                document.getElementById('itemButton').value = globe[value].price + "で購入";
+            }
+        }
+    }else if (value < 20) {
+        item.src = "/images/" + text + ".jpg";
+        for (var i = 0; hasPantsIDList[i] != null; i++) {
+            if (hasPantsIDList[i] == value-10) {
+                if (equip.pants == value-10 ) {
+                    document.getElementById('itemButton').value = "装備中";
+                }else {
+                    document.getElementById('itemButton').value = text + "を装備";
+                }
+                break;
+            }else {
+                document.getElementById('itemButton').value = pants[value-10].price + "で購入";
+            }
+        }
+    }else if (value < 30) {
+        item.src = "/images/" + text + ".jpg";
+        for (var i = 0; hasBeltIDList[i] != null; i++) {
+            if (hasBeltIDList[i] == value-20) {
+                if (equip.belt == value-20) {
+                    document.getElementById('itemButton').value = "装備中";
+                }else {
+                    document.getElementById('itemButton').value = text + "を装備";
+                }
+                break;
+            }else {
+                document.getElementById('itemButton').value = belt[value-20].price + "で購入";
+            }
+        }
+    }
+    document.getElementById('itemButton').style.visibility = 'visible';
+    document.getElementById('itemButton').disabled = false;
+}
+function changeequip() {
+    var btnname = document.getElementById('itemButton').value;
+    if (btnname != "装備中") {
+        if (btnname == "100で購入") {
+            if (selectvalue < 10){
+                if (globe[selectvalue].price <= money) {
+                    money -= globe[selectvalue].price;
+                    hasGlobeIDList[hasGlobeIDList.length] = selectvalue;
+                    document.getElementById('itemButton').value = globe[selectvalue].name + "を装備";
+                }else {
+                    document.getElementById('itemButton').value = "コインが足りません";
+                    document.getElementById('itemButton').disabled  = true;
+                }
+            }else if (selectvalue < 20) {
+                if (pants[selectvalue-10].price <= money) {
+                    money -= pants[selectvalue-10].price;
+                    hasPantsIDList[hasPantsIDList.length] = selectvalue-10;
+                    document.getElementById('itemButton').value = pants[selectvalue-10].name + "を装備";
+                }else {
+                    document.getElementById('itemButton').value = "コインが足りません";
+                    document.getElementById('itemButton').disabled  = true;
+                }
+            }else if (selectvalue < 30) {
+                if (belt[selectvalue-20].price <= money) {
+                    money -= belt[selectvalue-20].price;
+                    hasBeltIDList[hasBeltIDList.length] = selectvalue-20;
+                    document.getElementById('itemButton').value = belt[selectvalue-20].name + "を装備";
+                }else {
+                    document.getElementById('itemButton').value = "コインが足りません";
+                    document.getElementById('itemButton').disabled  = true;
+                }
+            }
+            title();
+        }else {
+            if (selectvalue < 10){
+                equip.globe = selectvalue;
+            }else if (selectvalue < 20) {
+                equip.pants = selectvalue-10;
+            }else if (selectvalue < 30) {
+                equip.belt = selectvalue-20;
+            }
+            document.getElementById('itemButton').value = "装備中";
+        }
+    }
 }
 function listSet() {
     globe=new Array();
@@ -51,7 +146,7 @@ function listSet() {
     hasBeltIDList[0]=0;
 
     equip=new equipments(1);
-    equip[0]=new equipments(0, 0, 0);
+    equip=new equipments(0, 0, 0);
 }
 function globeList(id, name, image, price) {
     this.id=id;
