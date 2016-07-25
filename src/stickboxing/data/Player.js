@@ -12,7 +12,7 @@ export var Player = struct({
     type: Number,
     vitality: Number,
     maxVitality: Number,
-    action: ""
+    actions: ""
 })
 
 export {Player as default}

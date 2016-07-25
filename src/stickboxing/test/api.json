@@ -1,0 +1,29 @@
+{
+    "stages": [
+        {
+            "name": "Ring",
+            "background": "/images/stage0_bg.svg",
+            "foreground": "/images/stage0_fg.svg"
+        },
+        {
+            "name": "Stage 2",
+            "background": "/images/stage1.svg",
+            "foreground": null
+        },
+        {
+            "name": "Stage 3",
+            "background": "/images/stage2.svg",
+            "foreground": null
+        },
+        {
+            "name": "Stage 4",
+            "background": "/images/stage3.svg",
+            "foreground": null
+        },
+        {
+            "name": "Stage 5",
+            "background": "/images/stage4.svg",
+            "foreground": null
+        }
+    ]
+}
