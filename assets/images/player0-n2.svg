@@ -42,7 +42,6 @@
     <dc:format>image/svg+xml</dc:format>
     <dc:type
        rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-    <dc:title></dc:title>
   </cc:Work>
 </rdf:RDF>
 </metadata>
@@ -63,7 +62,7 @@
     <title
        id="title4212">Layer 1</title>
     <path
-       d="m 50.280697,95.650449 c 12.36483,9.891811 51.803893,21.597741 50.168713,25.822881 -5.369296,27.97645 -5.84512,70.89039 1.87994,70.81374"
+       d="m 50.280697,95.650449 c 12.36483,9.891811 54.800113,13.807581 53.164933,18.032721 -5.369301,27.97645 1.64541,65.79682 9.37047,65.72017"
        id="svg_2"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#181820;stroke-width:6;stroke-linecap:round"
@@ -100,7 +99,7 @@
        id="svg_5"
        style="fill:#ffffff;stroke:#181820;stroke-width:3" />
     <path
-       d="m 50.280697,100.29962 c -16.464742,12.95541 -7.40906,41.35419 -8.5782,44.7209 -2.8358,13.03338 -27.47187,51.99556 -19.23926,51.91326"
+       d="m 50.280697,100.29962 c -16.464742,12.95541 -1.41663,40.75495 -2.58577,44.12166 -2.8358,13.03338 -19.68171,53.19404 -11.4491,53.11174"
        id="svg_6"
        inkscape:connector-curvature="0"
        style="fill:none;stroke:#181820;stroke-width:6;stroke-linecap:round"
