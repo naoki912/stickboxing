@@ -19,7 +19,7 @@ export default class extends React.Component {
 
         var {query} = props.location
 
-        var me = api["/users/me"]
+        var me = api["/me"]
         var opponent = api["/npcs/0"]
 
         this.state = {
@@ -38,7 +38,7 @@ export default class extends React.Component {
                     image: me.image,
                     name: me.name,
                     rotation: Vector3([0, 0, 0]),
-                    position: Vector2([40, 0]),
+                    position: Vector2([80, 0]),
                     velocity: Vector2([0, 0]),
                     size: Vector2([120, 200]),
                     type: 1,
@@ -50,7 +50,7 @@ export default class extends React.Component {
                     image: opponent.image,
                     name: opponent.name,
                     rotation: Vector3([0, 180, 0]),
-                    position: Vector2([410, 0]),
+                    position: Vector2([370, 0]),
                     velocity: Vector2([0, 0]),
                     size: Vector2([120, 200]),
                     type: 1,
@@ -59,13 +59,10 @@ export default class extends React.Component {
                     action: "NONE"
                 })
             ],
-            settings: {
-                layout: {
-                    directionalPadPosition: Vector2([10, 210]),
-                    lightPunchButtonPosition: Vector2([380, 260]),
-                    heavyPunchButtonPosition: Vector2([440, 260]),
-                    guardButtonPosition: Vector2([500, 260])
-                }
+            buttonLayout: {
+                guardButtonPosition: Vector2(me["button_layout"]["guard_button_position"]),
+                lightPunchButtonPosition: Vector2(me["button_layout"]["light_punch_button_position"]),
+                heavyPunchButtonPosition: Vector2(me["button_layout"]["heavy_punch_button_position"])
             },
             stage: Stage(api["/stages/" + query["stage_id"]]),
             time: 60,
@@ -127,13 +124,13 @@ export default class extends React.Component {
             players[0] = update(player, {
                 position: update(player.position, {
                     0: player.position[0] + Math.max(Math.min(distance[0] / 20, 4), -4)
-                }),
+                }),/*
                 rotation: update(player.rotation, [
                     ,
                     distance[0] > lever.size[0] / 2  ? 0
                   : distance[0] < -lever.size[0] / 2 ? 180
                   :                                    player.rotation[1]
-                ])
+                ])*/
             })
 
             if (distance[1] * 2 > joystick.size[1])
@@ -145,9 +142,9 @@ export default class extends React.Component {
                     ...map(players, Entity),
                     Entity({
                         rotation: Vector2([0, 0]),
-                        position: Vector2([0, -100]),
+                        position: Vector2([0, 0]),
                         velocity: Vector2([0, 0]),
-                        size: Vector2([1000, 100]),
+                        size: Vector2([1000, 8]),
                         type: 0
                     })
                 ],
@@ -163,7 +160,7 @@ export default class extends React.Component {
 
     render() {
         return <BattleView {...this.state}
-            onFieldTouchStart={(event) => {
+            onStageTouchStart={(event) => {
                 event.preventDefault()
 
                 var touch = event.targetTouches[0]
@@ -181,7 +178,7 @@ export default class extends React.Component {
                     position: position
                 })
             }}
-            onFieldTouchMove={(event) => {
+            onStageTouchMove={(event) => {
                 event.preventDefault()
 
                 var touch = event.targetTouches[0]
@@ -198,7 +195,7 @@ export default class extends React.Component {
                     add(extents(joystick.size), subtract(position, joystick.position))
                 )
             }}
-            onFieldTouchEnd={(event) => {
+            onStageTouchEnd={(event) => {
                 event.preventDefault()
 
                 var {joystick} = this.state

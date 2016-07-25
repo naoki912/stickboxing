@@ -1,4 +1,4 @@
-import {Enum, update} from "base"
+import {Enum, struct, update} from "base"
 import Vector from "stickboxing/geometry/Vector"
 
 var {map, filter} = Enum
@@ -47,7 +47,58 @@ var broadphase = (entity, ...tail) =>
         ]
         : []
 
-var collide = (e1, e2) =>
+export var narrowphase = () => {
+
+}
+
+var Begin = struct({
+    entity: Object,
+    value: Number
+})
+
+var End = struct({
+    entity: Object,
+    value: Number
+})
+
+var compare = ({value: v1}, {value: v2}) => v1 - v2
+
+export var sweepAndPrune = (entities) => {
+    var endPointsX = []
+    var endPointsY = []
+
+    for (var e of entities) {
+        endPointsX.push(Begin({entity: e, value: e.position[0]}))
+        endPointsX.push(End({entity: e, value: e.position[0] + e.size[0]}))
+        endPointsY.push(Begin({entity: e, value: e.position[1]}))
+        endPointsY.push(End({entity: e, value: e.position[1] + e.size[1]}))
+    }
+
+    endPointsX.sort(compare)
+    endPointsY.sort(compare)
+
+    collisionsX = []
+    collisionsY = []
+
+    activeList = []
+
+    for (var point of endPointsX)
+        if (point instanceof Begin) {
+            for (j = 0; j < activeList.count; j++) {
+                collisionsX.push([point.entity, a]);
+            }
+
+            activeList.add(point.object.id);
+        } else
+            activeList.remove(entity.id)
+}
+
+export var Collision = struct({
+    e1,
+    e2
+})
+
+var collision = (e1, e2) =>
     e1.position[0] < (e2.position[0] + e2.size[0])
  && e1.position[1] < (e2.position[1] + e2.size[1])
  && e2.position[0] < (e1.position[0] + e1.size[0])
@@ -60,3 +111,4 @@ window.broadphase = broadphase
 var check = (enty, entities) => {
 
 }
+

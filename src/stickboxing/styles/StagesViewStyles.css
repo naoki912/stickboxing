@@ -14,11 +14,22 @@ html, body {
 }
 
 .StagesView {
+    position: relative;
     width: 560px;
     height: 315px;
     margin: 0 auto;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
+}
+
+.StageView {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.Main {
+    position: absolute;
+    width: 100%;
+    height: 100%;
     text-align: center;
 }
 
@@ -27,6 +38,36 @@ html, body {
     color: white;
     font-family: "Squada One";
     font-size: 40px;
+    text-align: center;
+}
+
+.StageList {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    padding: 8px;
+}
+
+.StagePreviewView {
+    width: 56px;
+    height: 136px;
+    margin: 2px;
+    border: 1px solid white;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.SelectedStageView {
+    composes: StagePreviewView;
+    border-color: #28f;
+}
+
+.StageName {
+    padding: 2px;
+    color:white;
+    font-family: "Audiowide";
+    font-size: 20px;
     text-align: center;
 }
 
@@ -41,34 +82,4 @@ html, body {
     font-size: 20px;
     text-align: center;
     font-family:"Audiowide";
-}
-
-.StageList {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: center;
-    padding: 8px;
-}
-
-.StageView {
-    width: 56px;
-    height: 136px;
-    margin: 2px;
-    border: 1px solid white;
-    background-size: auto 100%;
-    background-repeat: no-repeat;
-}
-
-.SelectedStageView {
-    composes: StageView;
-    border-color: #28f;
-}
-
-.StageName {
-    padding: 2px;
-    color:white;
-    font-family: "Audiowide";
-    font-size: 20px;
-    text-align: center;
 }

@@ -7,4 +7,5 @@ export var Entity = struct({
     velocity: Vector2,
     size: Vector2
 })
+
 export {Entity as default}

@@ -1,4 +1,5 @@
 import {struct} from "base"
+import styles from "stickboxing/styles/BattleViewStyles"
 
 export var Stage = struct({
     id: Number,

@@ -1,0 +1,70 @@
+@font-face {
+    font-family: "Audiowide";
+    src: url(/fonts/Audiowide/Audiowide-Regular.ttf);
+}
+
+@font-face {
+    font-family: "Squada One";
+    src: url(/fonts/Squada_One/SquadaOne-Regular.ttf);
+}
+
+html, body, h1, h2, h3, h4, h5, h6, ul {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.SignInView {
+    width: 100%;
+    height: 100%;
+    background-color: #334;
+}
+
+.Title {
+    margin-bottom: 64px;
+    padding: 0px 32px;
+    color: white;
+    font-family: "Audiowide";
+    font-size: 32px;
+}
+
+.SignInForm {
+    display: flex;
+    flex-direction: column;
+    width: 320px;
+    margin: 0 auto;
+}
+
+.ButtonList {
+    display: flex;
+    flex-direction: row;
+}
+
+.Button {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+}
+
+.FacebookSignInButton {
+    composes: Button;
+    background-color: #359;
+    background-image: url("/images/facebook_logo.svg");
+}
+
+.GoogleSignInButton {
+    composes: Button;
+    background-color: #b33;
+    background-image: url("/images/facebook_logo.svg");
+}

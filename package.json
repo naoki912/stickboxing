@@ -26,6 +26,7 @@
     "browser-sync": "^2.12.10",
     "connect-history-api-fallback": "^1.2.0",
     "css-loader": "^0.23.1",
+    "firebase": "^3.2.0",
     "html-webpack-plugin": "^2.19.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1"

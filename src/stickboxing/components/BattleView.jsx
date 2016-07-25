@@ -1,20 +1,27 @@
 import {Enum, List, range} from "base"
 import React from "react"
 import ButtonView from "stickboxing/components/ButtonView"
+import StageView from "stickboxing/components/StageView"
 import styles from "stickboxing/styles/BattleViewStyles"
 
 var {zipWith} = Enum
 
-var a = () => {
-
+var scale = (size) => {
+    var {clientWidth, clientHeight} = document.documentElement
+    var scale = clientWidth / size[0]
+    if (scale * size[1] > clientHeight)
+        return clientHeight / size[1]
+    else
+        return scale
 }
 
 export default ({
+    buttonLayout,
     joystick,
     onDownArrowButtonPressed,
-    onFieldTouchStart,
-    onFieldTouchMove,
-    onFieldTouchEnd,
+    onStageTouchStart,
+    onStageTouchMove,
+    onStageTouchEnd,
     onGuardButtonPressed,
     onHeavyPunchButtonPressed,
     onLeftArrowButtonPressed,
@@ -22,24 +29,22 @@ export default ({
     onRightArrowButtonPressed,
     onUpArrowButtonPressed,
     players,
-    settings,
     stage,
     time
 }) =>
-    <div className={styles.BattleView}
-      style={{
-          backgroundImage: "url(" + stage.background + ")",
-          transform: "translate(0, -50%) scale(" + 1 + ", " + 1 + ") translate(0, 50%)"
-      }}>
-      <div className={styles.Field}
-        onTouchStart={onFieldTouchStart}
-        onTouchMove={onFieldTouchMove}
-        onTouchEnd={onFieldTouchEnd}>
-          {
-              zipWith(players, range(0, 10), (player, i) => <PlayerView key={i} player={player}/>)
-          }
-        <Joystick joystick={joystick}/>
-      </div>
+    <div
+      className={styles.BattleView}
+      style={{zoom: scale([560, 315])}}>
+      <StageView
+        className={styles.StageView}
+        onTouchStart={onStageTouchStart}
+        onTouchMove={onStageTouchMove}
+        onTouchEnd={onStageTouchEnd}
+        stage={stage}>
+        {
+            zipWith(players, range(0, 10), (player, i) => <PlayerView key={i} player={player}/>)
+        }
+      </StageView>
       <div className={styles.Info}>
         <div className={styles.VitalityGaugeContainer1}>
           <VitalityGaugeView player={players[0]}/>
@@ -49,29 +54,36 @@ export default ({
           <VitalityGaugeView player={players[1]}/>
         </div>
       </div>
-      <ButtonView className={styles.LightPunchButton}
-        position={settings.layout.lightPunchButtonPosition}
-        onTouchStart={onLightPunchButtonPressed}>
-        L
-      </ButtonView>
-      <ButtonView className={styles.HeavyPunchButton}
-        position={settings.layout.heavyPunchButtonPosition}
-        onTouchStart={onHeavyPunchButtonPressed}>
-        H
-      </ButtonView>
-      <ButtonView className={styles.GuardButton}
-        position={settings.layout.guardButtonPosition}
-        onTouchStart={onGuardButtonPressed}>
-        G
-      </ButtonView>
-      <div className={styles.StageForeground}
-        style={{
-          backgroundImage: "url(" + stage.foreground + ")"
-        }}/>
+        {
+            "ontouchstart" in window
+                ? <div>
+                    <Joystick joystick={joystick}/>
+                    <ButtonView
+                      className={styles.LightPunchButton}
+                      position={buttonLayout.lightPunchButtonPosition}
+                      onTouchStart={onLightPunchButtonPressed}>
+                      L
+                    </ButtonView>
+                    <ButtonView
+                      className={styles.HeavyPunchButton}
+                      position={buttonLayout.heavyPunchButtonPosition}
+                      onTouchStart={onHeavyPunchButtonPressed}>
+                      H
+                    </ButtonView>
+                    <ButtonView
+                      className={styles.GuardButton}
+                      position={buttonLayout.guardButtonPosition}
+                      onTouchStart={onGuardButtonPressed}>
+                      G
+                    </ButtonView>
+                  </div>
+                : null
+        }
     </div>
 
-var Joystick = ({joystick: {hidden, lever, position, size}}) => 
-   <div className={styles.Joystick}
+var Joystick = ({joystick: {hidden, lever, position, size}}) =>
+   <div
+     className={styles.Joystick}
      style={{
           visibility: hidden ? "hidden" : "visible",
           left:   position[0] - size[0] / 2 + "px",
@@ -80,7 +92,8 @@ var Joystick = ({joystick: {hidden, lever, position, size}}) =>
           height: size[1] + "px",
           borderRadius: Math.min(size[0], size[1]) / 2 + "px"
      }}>
-     <div className={styles.Lever}
+     <div
+       className={styles.Lever}
        style={{
           left:   lever.position[0] - lever.size[0] / 2 + "px",
           bottom: lever.position[1] - lever.size[1] / 2 + "px",
@@ -113,7 +126,8 @@ var PlayerView = ({player: {position, rotation, size, image}}) =>
           width:  size[0] + "px",
           height: size[1] + "px",
           backgroundImage: "url(" + image + ")",
-          transform:
-              "rotateX(" + rotation[0] + "deg) rotateY(" + rotation[1] + "deg) rotateZ(" + rotation[2] + "deg)"
+          transform: "rotateX(" + rotation[0] + "deg)" +
+                     "rotateY(" + rotation[1] + "deg)" +
+                     "rotateZ(" + rotation[2] + "deg)"
       }}>
     </div>
