@@ -42,7 +42,7 @@ export var updateEntities = (world, entities, deltaTime) => {
 var broadphase = (entity, ...tail) =>
     tail.length > 0
         ? [
-            ...map(filter(tail, (e) => collide(entity, e)), (e) => [entity, e]),
+            ...map(filter(tail, (e) => collision(entity, e)), (e) => [entity, e]),
             ...broadphase(...tail)
         ]
         : []

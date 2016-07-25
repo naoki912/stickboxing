@@ -117,7 +117,7 @@ var VitalityGaugeView = ({player: {vitality, maxVitality}}) => {
     )
 }
 
-var PlayerView = ({player: {position, rotation, size, images}}) =>
+var PlayerView = ({player: {position, rotation, size, image}}) =>
     <div
       className={styles.PlayerView}
       style={{
