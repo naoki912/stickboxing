@@ -13,7 +13,10 @@ export default ({
     stages
 }) =>
     <div className={styles.StagesView}>
-      <StageView className={styles.StageView} stage={stages[selectedIndex]} />
+      <StageView
+        className={styles.StageView}
+        stage={stages[selectedIndex]} />
+
       <div className={styles.Main}>
         <div className={styles.Title}>
           STAGE SELECT
