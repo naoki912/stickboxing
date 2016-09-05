@@ -1,6 +1,6 @@
 import {struct} from "base"
-import Vector2 from "stickboxing/geometry/Vector2"
-import Vector3 from "stickboxing/geometry/Vector3"
+import Vector2 from "stickboxing/math/geometry/Vector2"
+import Vector3 from "stickboxing/math/geometry/Vector3"
 
 export var Player = struct({
     image: String,
@@ -12,7 +12,7 @@ export var Player = struct({
     type: Number,
     vitality: Number,
     maxVitality: Number,
-    action: ""
+    action: String
 })
 
 export {Player as default}

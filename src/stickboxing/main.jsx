@@ -40,6 +40,7 @@ class Auth extends React.Component {
 
     render() {
         var {user} = this.state
+
         return user ? <div>{this.props.children}</div>
                     : <SignInViewContainer/>
     }

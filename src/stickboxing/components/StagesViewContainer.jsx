@@ -11,10 +11,12 @@ export default class extends React.Component {
         super(props)
 
         this.state = {
-            stages: map(database["/stages"], ({ }) => Stage),
+            stages: [],
             selectedIndex: 0
         }
     }
+
+    
 
     render() {
         return <StagesView {...this.state}
