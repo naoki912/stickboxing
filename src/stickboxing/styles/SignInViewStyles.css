@@ -66,5 +66,5 @@ ul {
 .GoogleSignInButton {
     composes: Button;
     background-color: #b33;
-    background-image: url("/images/facebook_logo.svg");
+    background-image: url("/images/google_logo.svg");
 }

@@ -9,20 +9,31 @@ export class SignInViewContainer extends React.Component {
     render() {
         return <SignInView
           onFacebookSignInButtonClick={() => {
+              var provider = new firebase.auth.FacebookAuthProvider()
 
+              firebase.auth().signInWithRedirect(provider)
+              firebase.auth().getRedirectResult().then((result) => {
+                  var user = result.user
+                  var credential = result.credential
+              }, (error) => {
+                  if (error.code === "auth/account-exists-with-different-credential") {
+                      
+                  }
+                  console.log("test")
+              })
           }}
           onGoogleSignInButtonClick={() => {
-            var provider = new firebase.auth.GoogleAuthProvider()
+              var provider = new firebase.auth.GoogleAuthProvider()
 
-            firebase.auth().signInWithRedirect(provider)
-            firebase.auth().getRedirectResult().then((result) => {
-                var user = result.user
-                var credential = result.credential
-            }, (error) => {
-                if (error.code === "auth/account-exists-with-different-credential") {
-                    
-                }
-            })
+              firebase.auth().signInWithRedirect(provider)
+              firebase.auth().getRedirectResult().then((result) => {
+                  var user = result.user
+                  var credential = result.credential
+              }, (error) => {
+                  if (error.code === "auth/account-exists-with-different-credential") {
+                      
+                  }
+              })
           }}
         />
     }

@@ -9,6 +9,7 @@ import Vector3 from "stickboxing/math/geometry/Vector3"
 import Entity from "stickboxing/physics/Entity"
 import * as World from "stickboxing/physics/World"
 import database from "stickboxing/test/database"
+import URI from "uri-js"
 
 var {map, zipWith} = Enum
 var {add, subtract, multiply} = Vector
@@ -27,12 +28,17 @@ export default class extends React.Component {
 
         var character1 = database["/stages/" + query["stage_id"]]
 
+        var a = query(database["/stages/" + query["stage_id"]]);
+
         var stage = Stage({
             "id": 0,
             "name": "Ring",
             "background": "/stages/" + query["stage_id"] + "/background.svg",
             "foreground": "/stages/" + query["stage_id"] + "/foreground.svg"
         })
+        
+
+        URI.resolve("/stages/" + query["stage_id"], )
 
         this.state = {
             lastTime: Date.now(),
