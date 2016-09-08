@@ -20,7 +20,7 @@ export class SignInViewContainer extends React.Component {
                 var credential = result.credential
             }, (error) => {
                 if (error.code === "auth/account-exists-with-different-credential") {
-
+                    
                 }
             })
           }}

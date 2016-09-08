@@ -1,0 +1,11 @@
+{
+    "name": "Stick Figure 1",
+    "state": {
+        "default": {
+            "image": "default/0.svg"
+        },
+        "jump": {
+            "image": "default/0.svg"
+        }
+    }
+}

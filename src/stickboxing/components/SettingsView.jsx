@@ -1,7 +1,7 @@
 import React from "react"
 import battleViewStyles from "stickboxing/styles/BattleViewStyles"
 import styles from "stickboxing/styles/SettingsViewStyles"
-import api from "stickboxing/test/api"
+import database from "stickboxing/test/database"
 
 var onButtonMouseDown = (event) => {
     var button = event.currentTarget

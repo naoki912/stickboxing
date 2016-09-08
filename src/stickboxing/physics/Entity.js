@@ -1,5 +1,5 @@
 import {struct} from "base"
-import Vector2 from "stickboxing/geometry/Vector2"
+import Vector2 from "stickboxing/math/geometry/Vector2"
 
 export var Entity = struct({
     type: Number,

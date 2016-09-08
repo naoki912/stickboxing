@@ -1,5 +1,5 @@
 import {Enum, struct, update} from "base"
-import Vector from "stickboxing/geometry/Vector"
+import Vector from "stickboxing/math/geometry/Vector"
 
 var {map, filter} = Enum
 var {add, subtract, multiply} = Vector

@@ -1,0 +1,8 @@
+{
+    "name": "Ryu",
+    "state": {
+        "default": {
+            "image": "default/0.gif"
+        }
+    }
+}

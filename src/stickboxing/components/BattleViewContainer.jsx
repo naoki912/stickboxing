@@ -3,12 +3,12 @@ import React from "react"
 import BattleView from "stickboxing/components/BattleView"
 import Player from "stickboxing/data/Player"
 import Stage from "stickboxing/data/Stage"
-import Vector from "stickboxing/geometry/Vector"
-import Vector2 from "stickboxing/geometry/Vector2"
-import Vector3 from "stickboxing/geometry/Vector3"
+import Vector from "stickboxing/math/geometry/Vector"
+import Vector2 from "stickboxing/math/geometry/Vector2"
+import Vector3 from "stickboxing/math/geometry/Vector3"
 import Entity from "stickboxing/physics/Entity"
 import * as World from "stickboxing/physics/World"
-import api from "stickboxing/test/api"
+import database from "stickboxing/test/database"
 
 var {map, zipWith} = Enum
 var {add, subtract, multiply} = Vector
@@ -19,8 +19,20 @@ export default class extends React.Component {
 
         var {query} = props.location
 
-        var me = api["/me"]
-        var opponent = api["/npcs/0"]
+        var user1 = database["users/0"]
+        var user2 = database["users/1"]
+
+        var character1Path = database["characters/" + user1["character_id"]]
+        var character2Path = database["characters/" + user2["character_id"]]
+
+        var character1 = database["/stages/" + query["stage_id"]]
+
+        var stage = Stage({
+            "id": 0,
+            "name": "Ring",
+            "background": "/stages/" + query["stage_id"] + "/background.svg",
+            "foreground": "/stages/" + query["stage_id"] + "/foreground.svg"
+        })
 
         this.state = {
             lastTime: Date.now(),
@@ -35,8 +47,8 @@ export default class extends React.Component {
             },
             players: [
                 Player({
-                    image: me.image,
-                    name: me.name,
+                    image: user1.image,
+                    name: user1.name,
                     rotation: Vector3([0, 0, 0]),
                     position: Vector2([80, 0]),
                     velocity: Vector2([0, 0]),
@@ -47,8 +59,8 @@ export default class extends React.Component {
                     action: "NONE"
                 }),
                 Player({
-                    image: opponent.image,
-                    name: opponent.name,
+                    image: user2.image,
+                    name: user2.name,
                     rotation: Vector3([0, 180, 0]),
                     position: Vector2([370, 0]),
                     velocity: Vector2([0, 0]),
@@ -60,11 +72,11 @@ export default class extends React.Component {
                 })
             ],
             buttonLayout: {
-                guardButtonPosition: Vector2(me["button_layout"]["guard_button_position"]),
-                lightPunchButtonPosition: Vector2(me["button_layout"]["light_punch_button_position"]),
-                heavyPunchButtonPosition: Vector2(me["button_layout"]["heavy_punch_button_position"])
+                guardButtonPosition: Vector2(user1["button_layout"]["guard_button_position"]),
+                lightPunchButtonPosition: Vector2(user1["button_layout"]["light_punch_button_position"]),
+                heavyPunchButtonPosition: Vector2(user1["button_layout"]["heavy_punch_button_position"])
             },
-            stage: Stage(api["/stages/" + query["stage_id"]]),
+            stage: stage,
             time: 60,
             world: {
                 gravity: Vector2([0, -9.8]),
@@ -73,7 +85,7 @@ export default class extends React.Component {
         }
     }
 
-    componentDidMount() {
+    componentDidMount() {        
         window.onkeydown = (event) => {
             var {key} = event
             var {joystick} = this.state
@@ -158,7 +170,7 @@ export default class extends React.Component {
         }, 16)
     }
 
-    render() {
+    render() {        
         return <BattleView {...this.state}
             onStageTouchStart={(event) => {
                 event.preventDefault()

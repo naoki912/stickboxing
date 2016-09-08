@@ -10,6 +10,7 @@ import MainMenuView from "stickboxing/components/MainMenuView"
 import SettingsView from "stickboxing/components/SettingsView"
 import SignInViewContainer from "stickboxing/components/SignInViewContainer"
 import StagesViewContainer from "stickboxing/components/StagesViewContainer"
+import "whatwg-fetch"
 
 var config = {
     apiKey: "AIzaSyBvcMpM7tOzqJNQk9SwkLqz6ThTFNZzYJs",
@@ -29,11 +30,17 @@ class Auth extends React.Component {
 
     componentWillMount() {
         var app = firebase.initializeApp(config)
-        app.auth().onAuthStateChanged((user) => this.setState({user: user}))
+        app.auth().onAuthStateChanged((user) => {
+            this.setState({user: user})
+
+            window.user = user
+            var database = window.database = app.database()
+        })
     }
 
     render() {
         var {user} = this.state
+
         return user ? <div>{this.props.children}</div>
                     : <SignInViewContainer/>
     }

@@ -15,9 +15,8 @@ html, body {
 
 .StagesView {
     position: relative;
-    width: 560px;
-    height: 315px;
-    margin: 0 auto;
+    width: 100%;
+    height: 100%;
 }
 
 .StageView {
@@ -30,7 +29,6 @@ html, body {
     position: absolute;
     width: 100%;
     height: 100%;
-    text-align: center;
 }
 
 .Title {
@@ -50,11 +48,6 @@ html, body {
 }
 
 .StagePreviewView {
-    width: 100%;
-    height: 100%;
-}
-
-.StageView {
     width: 70px;
     height: 136px;
     margin: 8px;

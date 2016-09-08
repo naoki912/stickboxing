@@ -2,7 +2,7 @@ import base, {Enum, List} from "base"
 import React from "react"
 import Stage from "stickboxing/data/Stage"
 import StagesView from "stickboxing/components/StagesView"
-import api from "stickboxing/test/api"
+import database from "stickboxing/test/database"
 
 var {map} = Enum
 
@@ -11,10 +11,12 @@ export default class extends React.Component {
         super(props)
 
         this.state = {
-            stages: map(api["/stages"], Stage),
+            stages: [],
             selectedIndex: 0
         }
     }
+
+    
 
     render() {
         return <StagesView {...this.state}
