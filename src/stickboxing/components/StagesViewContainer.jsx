@@ -11,7 +11,38 @@ export default class extends React.Component {
         super(props)
 
         this.state = {
-            stages: [],
+            stages: [
+                {
+                    "id": 0,
+                    "name": "Ring",
+                    "background": "/stages/0/background.svg",
+                    "foreground": "/stages/0/foreground.svg"
+                },
+                {
+                    "id": 0,
+                    "name": "Ring",
+                    "background": "/stages/0/background.svg",
+                    "foreground": "/stages/0/foreground.svg"
+                },
+                {
+                    "id": 0,
+                    "name": "Ring",
+                    "background": "/stages/0/background.svg",
+                    "foreground": "/stages/0/foreground.svg"
+                },
+                {
+                    "id": 0,
+                    "name": "Ring",
+                    "background": "/stages/0/background.svg",
+                    "foreground": "/stages/0/foreground.svg"
+                },
+                {
+                    "id": 0,
+                    "name": "Ring",
+                    "background": "/stages/0/background.svg",
+                    "foreground": "/stages/0/foreground.svg"
+                }
+            ],
             selectedIndex: 0
         }
     }
