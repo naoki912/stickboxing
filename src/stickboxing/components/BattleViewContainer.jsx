@@ -23,22 +23,43 @@ export default class extends React.Component {
         var user1 = database["users/0"]
         var user2 = database["users/1"]
 
-        var character1Path = database["characters/" + user1["character_id"]]
-        var character2Path = database["characters/" + user2["character_id"]]
+        var character1_id = user1["character_id"]
+        var character2_id = user2["character_id"]
 
-        var character1 = database["/stages/" + query["stage_id"]]
+        var character1_manifest = {
+            "name": "Stick Figure 1",
+            "state": {
+                "default": {
+                    "image": "default/0.svg"
+                },
+                "jump": {
+                    "image": "default/0.svg"
+                }
+            }
+        }
 
-        var a = query(database["/stages/" + query["stage_id"]]);
+        var character2_manifest = {
+            "name": "Ryu",
+            "state": {
+                "default": {
+                    "image": "default/0.gif"
+                }
+            }
+        }
+
+        var stage_id = query["stage_id"];
+        var stage_manifest = {
+            "name": "Ring",
+            "background": "background.svg",
+            "foreground": "foreground.svg"
+        };
 
         var stage = Stage({
-            "id": 0,
-            "name": "Ring",
-            "background": "/stages/" + query["stage_id"] + "/background.svg",
-            "foreground": "/stages/" + query["stage_id"] + "/foreground.svg"
+            "id": stage_id,
+            "name": stage_manifest["name"],
+            "background": URI.resolve("/stages/" + stage_id + "/", stage_manifest["background"]),
+            "foreground": URI.resolve("/stages/" + stage_id + "/", stage_manifest["foreground"])
         })
-        
-
-        //URI.resolve("/stages/" + query["stage_id"])
 
         this.state = {
             lastTime: Date.now(),
@@ -53,7 +74,10 @@ export default class extends React.Component {
             },
             players: [
                 Player({
-                    image: user1.image,
+                    image: URI.resolve(
+                        "/characters/" + character1_id + "/",
+                        character1_manifest["state"]["default"]["image"]
+                    ),
                     name: user1.name,
                     rotation: Vector3([0, 0, 0]),
                     position: Vector2([80, 0]),
@@ -65,7 +89,10 @@ export default class extends React.Component {
                     action: "NONE"
                 }),
                 Player({
-                    image: user2.image,
+                    image: URI.resolve(
+                        "/characters/" + character2_id + "/",
+                        character2_manifest["state"]["default"]["image"]
+                    ),
                     name: user2.name,
                     rotation: Vector3([0, 180, 0]),
                     position: Vector2([370, 0]),

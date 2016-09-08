@@ -23,15 +23,15 @@ export var database = {
             "name": "Takeshi"
         },
         {
-            "id": 1,
-            "name": "Suneo",
-            "character_id": 1,
-            "coin": 10000,
             "button_layout": {
                 "guard_button_position": [500, 260],
                 "light_punch_button_position": [380, 260],
                 "heavy_punch_button_position": [440, 260]
-            }
+            },
+            "character_id": 1,
+            "coin": 10000,
+            "id": 1,
+            "name": "Suneo"
         }
     ]
 }
