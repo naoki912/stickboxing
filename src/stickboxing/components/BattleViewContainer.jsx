@@ -38,7 +38,7 @@ export default class extends React.Component {
         })
         
 
-        URI.resolve("/stages/" + query["stage_id"], )
+        //URI.resolve("/stages/" + query["stage_id"])
 
         this.state = {
             lastTime: Date.now(),
